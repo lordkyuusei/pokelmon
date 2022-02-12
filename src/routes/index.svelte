@@ -56,7 +56,12 @@
 
 <style>
 	main {
-		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-items: center;
+		align-content: center;
+		justify-content: center;
 		background-color: var(--theme-alt-background);
 	}
 

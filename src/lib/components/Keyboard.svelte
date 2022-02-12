@@ -38,6 +38,9 @@
 </div>
 
 <style>
+	.pokelmon-keyboard {
+		width: 100%;
+	}
 	.keyboard-row {
 		display: flex;
 		flex-direction: row;

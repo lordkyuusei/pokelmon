@@ -29,10 +29,11 @@
 
 <style>
 	.pokelmon-guessboard {
-		width: 80%;
+		width: 100%;
+		height: 100%;
 		display: grid;
 		grid-template-columns: 100%;
-		grid-template-rows: repeat(6, 1fr);
+		grid-template-rows: repeat(6, 50px);
 		align-items: center;
 		justify-items: center;
 		gap: 0.2rem;
@@ -47,6 +48,7 @@
 
 	.guessboard-row {
 		display: flex;
+		justify-content: center;
 		height: 100%;
 		width: 100%;
 		gap: 0.2rem;
@@ -57,7 +59,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 3rem;
-		width: 100%;
+		width: 4rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
 	}
@@ -103,6 +105,10 @@
 	}
 
 	@media screen and (max-width: 600px) {
+		.pokelmon-guessboard {
+			width: 90%;
+		}
+
 		img {
 			height: 30px;
 		}

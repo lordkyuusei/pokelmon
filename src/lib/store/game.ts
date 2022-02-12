@@ -48,7 +48,7 @@ const createGame = () => {
     // Removes the last selected Pokémon from the game board
     const backspace = (row: number) => update(game => {
         const cell = game[row].findIndex(c => c.id === '');
-        const position = cell > 0 ? cell - 1 : game[row].length;
+        const position = (cell > 0 ? cell : game[row].length) - 1;
         game[row][position] = { id: '', status: 'blank' };
         return game;
     });
