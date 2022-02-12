@@ -1,0 +1,200 @@
+[
+    {
+        "id": 601,
+        "type": {
+            "fr": "Acier",
+            "en": "Steel"
+        },
+        "pokemon": {
+            "fr": "Cliticlic",
+            "en": "Klingklang"
+        }
+    },
+    {
+        "id": 237,
+        "type": {
+            "fr": "Combat",
+            "en": "Fighting"
+        },
+        "pokemon": {
+            "fr": "Kapoera",
+            "en": "Hitmontop"
+        }
+    },
+    {
+        "id": 706,
+        "type": {
+            "fr": "Dragon",
+            "en": "Dragon"
+        },
+        "pokemon": {
+            "fr": "Muplodocus",
+            "en": "Goodra"
+        }
+    },
+    {
+        "id": 457,
+        "type": {
+            "fr": "Eau",
+            "en": "Water"
+        },
+        "pokemon": {
+            "fr": "Luminéon",
+            "en": "Lumineon"
+        }
+    },
+    {
+        "id": 181,
+        "type": {
+            "fr": "Electrique",
+            "en": "Electrik"
+        },
+        "pokemon": {
+            "fr": "Pharamp",
+            "en": "Ampharos"
+        }
+    },
+    {
+        "id": 38,
+        "type": {
+            "fr": "Feu",
+            "en": "Fire"
+        },
+        "pokemon": {
+            "fr": "Feunard",
+            "en": "Ninetales"
+        }
+    },
+    {
+        "id": 700,
+        "type": {
+            "fr": "Fée",
+            "en": "Fairy"
+        },
+        "pokemon": {
+            "fr": "Nymphali",
+            "en": "Sylveon"
+        }
+    },
+    {
+        "id": 584,
+        "type": {
+            "fr": "Glace",
+            "en": "Ice"
+        },
+        "pokemon": {
+            "fr": "Sorbouboul",
+            "en": "Vanilluxe"
+        }
+    },
+    {
+        "id": 127,
+        "type": {
+            "fr": "Insecte",
+            "en": "Bug"
+        },
+        "pokemon": {
+            "fr": "Scarabrute",
+            "en": "Pinsir"
+        }
+    },
+    {
+        "id": 335,
+        "type": {
+            "fr": "Normal",
+            "en": "Normal"
+        },
+        "pokemon": {
+            "fr": "Mangriff",
+            "en": "Zangoose"
+        }
+    },
+    {
+        "id": 192,
+        "type": {
+            "fr": "Plante",
+            "en": "Grass"
+        },
+        "pokemon": {
+            "fr": "Héliatronc",
+            "en": "Sunflora"
+        }
+    },
+    {
+        "id": 336,
+        "type": {
+            "fr": "Poison",
+            "en": "Poison"
+        },
+        "pokemon": {
+            "fr": "Seviper",
+            "en": "Seviper"
+        }
+    },
+    {
+        "id": 65,
+        "type": {
+            "fr": "Psy",
+            "en": "Psychic"
+        },
+        "pokemon": {
+            "fr": "Alakazam",
+            "en": "Alakazam"
+        }
+    },
+    {
+        "id": 874,
+        "type": {
+            "fr": "Roche",
+            "en": "Rock"
+        },
+        "pokemon": {
+            "fr": "Dolman",
+            "en": "Stonjourner"
+        }
+    },
+    {
+        "id": 28,
+        "type": {
+            "fr": "Sol",
+            "en": "Ground"
+        },
+        "pokemon": {
+            "fr": "Sablaireau",
+            "en": "Sandslash"
+        }
+    },
+    {
+        "id": 563,
+        "type": {
+            "fr": "Spectre",
+            "en": "Ghost"
+        },
+        "pokemon": {
+            "fr": "Tutankafer",
+            "en": "Cofagrigus"
+        }
+    },
+    {
+        "id": 359,
+        "type": {
+            "fr": "Ténèbres",
+            "en": "Dark"
+        },
+        "pokemon": {
+            "fr": "Absol",
+            "en": "Absol"
+        }
+    },
+    {
+        "id": 822,
+        "type": {
+            "fr": "Vol",
+            "en": "Flying"
+        },
+        "pokemon": {
+            "fr": "Bleuseille",
+            "en": "Corvisquire"
+        }
+    }
+]
