@@ -18,14 +18,16 @@
 	{/each}
 </div>
 
-<small>Solution was:</small>
-<div class="message">
-	{#each $proposal as id}
-		<div class="row-cell cell-correct">
-			<img src="{POKEMON_ICON_URL}{id}.png" alt={id} />
-		</div>
-	{/each}
-</div>
+{#if $isLost || $isLost}
+	<small>Solution was:</small>
+	<div class="message">
+		{#each $proposal as id}
+			<div class="row-cell cell-correct">
+				<img src="{POKEMON_ICON_URL}{id}.png" alt={id} />
+			</div>
+		{/each}
+	</div>
+{/if}
 
 <style>
 	.pokelmon-guessboard {
