@@ -4,6 +4,7 @@
 	import ThemeContext from '$lib/ThemeContext.svelte';
 	import { onMount } from 'svelte';
 	import { POKEMON_ICON_URL } from '$lib/constants';
+	import Popup from '$lib/components/Popup.svelte';
 
 	let showSettings = false;
 	let showHelp = false;
@@ -24,7 +25,7 @@
 		<button class="icon" on:click={() => (showHelp = !showHelp)}>❓</button>
 	</header>
 
-	<div class="popup" class:shown={showHelp || showSettings}>
+	<Popup show={showHelp || showSettings} size={showHelp ? 'lg' : showSettings ? 'md' : 'sm'}>
 		<div class="content show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
 			{#if showSettings}
 				<h3>{$t('settings-lang')}</h3>
@@ -77,7 +78,7 @@
 				<button on:click={() => (showHelp = !showHelp)}>{$t('settings-close')}</button>
 			{/if}
 		</div>
-	</div>
+	</Popup>
 
 	<slot />
 </ThemeContext>
@@ -94,22 +95,6 @@
 		font-family: 'Cascadia Code', monospace;
 	}
 
-	.popup {
-		position: absolute;
-		text-align: center;
-		font-family: 'Cascadia Code', monospace;
-		font-size: 0.8rem;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: var(--theme-cardglass);
-		display: none;
-		justify-content: center;
-		align-items: center;
-		z-index: 10;
-	}
-
 	.content {
 		padding: 0.5rem;
 		width: 80%;
@@ -123,14 +108,6 @@
 		align-items: center;
 	}
 
-	.show-help {
-		height: 40vh;
-	}
-
-	.show-settings {
-		height: 25vh;
-	}
-
 	.languages,
 	.accessibility {
 		display: flex;
@@ -139,12 +116,6 @@
 		align-items: center;
 		width: 100%;
 		height: 100%;
-	}
-
-	.shown {
-		display: flex;
-		justify-content: center;
-		justify-items: center;
 	}
 
 	button:not(.icon) {

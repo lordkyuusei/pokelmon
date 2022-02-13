@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { POKEMON_SPRITE_URL } from '$lib/constants';
-	import { game, tries } from '$lib/store/game';
+	import { getCellStatus, tries } from '$lib/store/game';
 
 	export let id: number = 0;
 	export let name: string = '';
 	export let use: 'key' | 'action' = 'key';
 
-	$: status = game.getCellStatus(id, $tries - 2);
+	$: status = getCellStatus(id, $tries);
 
 	const nameToIcon = {
 		backspace: '🔙',

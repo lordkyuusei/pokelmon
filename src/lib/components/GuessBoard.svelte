@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { game, tries, isWin, isLost, proposal } from '$lib/store/game';
+	import { game, isLost, isWin, proposal } from '$lib/store/game';
 	import { POKEMON_ICON_URL } from '$lib/constants';
-	$: console.log($isLost, $tries, $isWin);
+	import { dev } from '$app/env';
+	import Popup from './Popup.svelte';
+	import { t } from '$lib/store/i18n';
 </script>
 
 <div class="pokelmon-guessboard">
@@ -9,22 +11,41 @@
 		<div class="guessboard-row row-{index}">
 			{#each row as cell}
 				<div class="row-cell cell-{cell.status}">
-					{#if cell.id !== ''}
-						<img src="{POKEMON_ICON_URL}{cell.id}.png" alt={cell.id} />
+					{#if cell.id !== 0}
+						<img src="{POKEMON_ICON_URL}{cell.id}.png" alt={`${cell.id}`} />
 					{/if}
 				</div>
 			{/each}
 		</div>
 	{/each}
 </div>
-
-{#if $isLost || $isLost}
-	<small>Solution was:</small>
-	<div class="message">
-		{#each $proposal as id}
-			<div class="row-cell cell-correct">
-				<img src="{POKEMON_ICON_URL}{id}.png" alt={id} />
+{#if $isWin || $isLost}
+	<Popup show size="lg">
+		{#if $isWin}
+			<div class="victory">
+				<h3>{$t('game-won')}</h3>
+				<div class="">
+					{#each $proposal as id}
+						<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
+					{/each}
+				</div>
 			</div>
+		{:else}
+			<div class="defeat">
+				<h3>{$t('game-lost')}</h3>
+				<div class="pokelmon-guessboard-debug">
+					{#each $proposal as id}
+						<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
+					{/each}
+				</div>
+			</div>
+		{/if}
+	</Popup>
+{/if}
+{#if dev}
+	<div class="pokelmon-guessboard-debug">
+		{#each $proposal as id}
+			<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
 		{/each}
 	</div>
 {/if}
@@ -40,6 +61,35 @@
 		justify-items: center;
 		gap: 0.2rem;
 		margin: 1rem auto;
+	}
+
+	.pokelmon-guessboard-debug {
+		display: grid;
+		grid-template-columns: repeat(6, 50px);
+		gap: 0.2rem;
+		margin: 1rem auto;
+		background-color: blueviolet;
+	}
+
+	.victory,
+	.defeat {
+		padding: 0.5rem;
+		width: 80%;
+		color: var(--theme-background);
+		border: 1px solid var(--theme-border);
+		box-shadow: var(--theme-shadow);
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
+	}
+
+	.victory {
+		background-color: #a6ff9e;
+	}
+
+	.defeat {
+		background-color: #ff9e9e;
 	}
 
 	img {

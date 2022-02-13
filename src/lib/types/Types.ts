@@ -1,5 +1,5 @@
 export type PokemonCell = {
-    id: string;
+    id: number;
     status: KeyState;
 }
 
@@ -12,7 +12,7 @@ export type PokemonKey = {
     pokemon: ElementRef;
 }
 
-export type KeyState = 'blank' | 'misplaced' | 'correct' | 'wrong' = 'blank';
+export type KeyState = 'blank' | 'misplaced' | 'correct' | 'wrong';
 
 type ElementRef = {
     [key: string]: string;

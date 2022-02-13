@@ -18,12 +18,14 @@
 	export let seed: number = 0;
 
 	const handlePokemon = (event) => {
-		game.write(event.detail.pokemon, $tries - 1);
+		const { pokemon } = event.detail;
+		const id = parseInt(pokemon);
+		game.write(id, $tries - 1);
 	};
 
 	const handleValidate = () => {
-		if (!$isWin && !$isLost) {
-			if ($game[$tries - 1].findIndex((p) => p.id === '') === -1) {
+		if (!$isWin || !$isLost) {
+			if ($game[$tries - 1].findIndex((p) => p.id === 0) === -1) {
 				game.verify($tries - 1, $proposal);
 				tries.increment();
 			}
@@ -33,7 +35,7 @@
 	const handleBackspace = () => game.backspace($tries - 1);
 
 	const handleAction = (event) => {
-		if (!$isWin && !$isLost) {
+		if (!$isWin || !$isLost) {
 			const events = {
 				backspace: () => handleBackspace(),
 				enter: () => handleValidate()
