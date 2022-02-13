@@ -14,9 +14,9 @@ const translations = {
         "settings-close": "Close",
         "settings-rules": "Rules",
         "settings-rules-1": "You need to guess the content of today's pokémon team. A pokémon team is made of 6 Pokémon. In the following situation:",
-        "settings-rules-correct": "<strong>Correct</strong> Pokémon are the ones that are in the right position & green.",
-        "settings-rules-misplaced": "<strong>Misplaced</strong> Pokémon are the ones that are in the wrong position & orange.",
-        "settings-rules-wrong": "<strong>Wrong</strong> Pokémon are the ones that are not in the team & red.",
+        "settings-rules-correct": "Green background: present & right position.",
+        "settings-rules-misplaced": "Orange background: present but wrong position.",
+        "settings-rules-wrong": "Red background: not present in the team.",
 
     },
     french: {
@@ -32,9 +32,9 @@ const translations = {
         "settings-close": "Close",
         "settings-rules": "Règles",
         "settings-rules-1": "Vous devez deviner l'équipe de pokémon du jour. Une équipe de pokémon est constituée de 6 Pokémon. Dans le cas suivant:",
-        "settings-rules-correct": "Les bons Pokémon sont ceux qui sont dans la bonne position & vert.",
-        "settings-rules-misplaced": "Les Pokémon mal placés sont ceux qui sont dans la mauvaise position & orange.",
-        "settings-rules-wrong": "Les mauvais Pokémon sont ceux qui ne sont pas dans l'équipe & rouge.",
+        "settings-rules-correct": "Fond vert: le Pokémon est présent et positionné correctement.",
+        "settings-rules-misplaced": "Fond orange: le Pokémon est présent mais mal positionné.",
+        "settings-rules-wrong": "Fond rouge: le Pokémon n'est pas présent dans l'équipe.",
     }
 }
 export const locale = writable("english");

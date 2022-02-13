@@ -25,7 +25,7 @@
 	</header>
 
 	<div class="popup" class:shown={showHelp || showSettings}>
-		<div class="content">
+		<div class="content show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
 			{#if showSettings}
 				<h3>{$t('settings-lang')}</h3>
 				<div class="languages">
@@ -113,7 +113,6 @@
 	.content {
 		padding: 0.5rem;
 		width: 80%;
-		height: 60%;
 		color: var(--theme-text);
 		background-color: var(--theme-background);
 		border: 1px solid var(--theme-border);
@@ -122,6 +121,14 @@
 		flex-direction: column;
 		align-content: center;
 		align-items: center;
+	}
+
+	.show-help {
+		height: 40vh;
+	}
+
+	.show-settings {
+		height: 25vh;
 	}
 
 	.languages,
@@ -158,7 +165,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 3rem;
-		width: 100%;
+		width: 3rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
 	}

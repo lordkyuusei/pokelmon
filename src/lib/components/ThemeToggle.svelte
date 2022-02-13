@@ -47,14 +47,13 @@
 		cursor: pointer;
 	}
 	.unchecked {
-		transform: translateX(-10px);
+		transform: translateX(-30px);
 		height: 32px;
 		width: 36px;
 		background: url('/moon.png') no-repeat center center;
 		background-size: cover;
 	}
 	.checked {
-		transform: translateX(30px);
 		height: 35px;
 		width: 35px;
 		background: url('/sun.png') no-repeat center center;

@@ -33,12 +33,14 @@
 	const handleBackspace = () => game.backspace($tries - 1);
 
 	const handleAction = (event) => {
-		const events = {
-			backspace: () => handleBackspace(),
-			enter: () => handleValidate()
-		};
-		const action = events[event.detail.action];
-		action();
+		if (!$isWin && !$isLost) {
+			const events = {
+				backspace: () => handleBackspace(),
+				enter: () => handleValidate()
+			};
+			const action = events[event.detail.action];
+			action();
+		}
 	};
 
 	onMount(() => {

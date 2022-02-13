@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { game, isWin, isLost } from '$lib/store/game';
+	import { game, tries, isWin, isLost, proposal } from '$lib/store/game';
 	import { POKEMON_ICON_URL } from '$lib/constants';
+	$: console.log($isLost, $tries, $isWin);
 </script>
 
 <div class="pokelmon-guessboard">
@@ -16,16 +17,15 @@
 		</div>
 	{/each}
 </div>
-{#if $isWin}
-	<div class="win-message">
-		<h1>You Win!</h1>
-	</div>
-{/if}
-{#if $isLost}
-	<div class="lost-message">
-		<h1>You Lost!</h1>
-	</div>
-{/if}
+
+<small>Solution was:</small>
+<div class="message">
+	{#each $proposal as id}
+		<div class="row-cell cell-correct">
+			<img src="{POKEMON_ICON_URL}{id}.png" alt={id} />
+		</div>
+	{/each}
+</div>
 
 <style>
 	.pokelmon-guessboard {
@@ -62,6 +62,11 @@
 		width: 4rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
+	}
+
+	.message {
+		display: flex;
+		margin-bottom: 3rem;
 	}
 
 	.row-0 {

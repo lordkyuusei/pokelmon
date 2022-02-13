@@ -1,11 +1,13 @@
 import { derived, get, writable } from 'svelte/store';
 import type { PokemonGame } from '$lib/types/Types';
+import pokemon from '$lib/store/alphabet.json';
 
 const createProposal = () => {
     const { subscribe, set, update } = writable([]);
 
     const init = (_) => update(proposal => {
-        return ['335', '127', '192', '65', '181', '706'];
+        const challenge = [...Array(6)].map(() => Math.floor(Math.random() * pokemon.length));
+        return challenge.map(id => `${pokemon[id].id}`);
     });
 
     return {
@@ -56,26 +58,42 @@ const createGame = () => {
     const verify = (row: number, proposal: string[]) => update(game => {
         const misplaced = {}
 
-        const gameRow = game[row].map((cell, index) => {
-            if (cell.id === proposal[index]) {
-                cell.status = 'correct';
-            } else if (proposal.includes(cell.id)) {
-                const nbr = proposal.filter(p => p === cell.id).length;
-                const curr = misplaced[cell.id] || 0;
-                if (curr < nbr) {
-                    misplaced[cell.id] = curr + 1;
+        const validatedRow = game[row].map((cell, index) => {
+            cell.status = cell.id === proposal[index] ? 'correct' : 'wrong'
+            return cell;
+        })
+
+        const validatedCells = validatedRow.filter(cell => cell.status === 'correct');
+
+        const completeRow = validatedRow.map((cell, index) => {
+            if (cell.status === 'wrong' && proposal.includes(cell.id)) {
+                const total = validatedRow.filter(c => c.id === cell.id).length;
+                const totalGood = validatedCells.filter(c => c.id === cell.id).length;
+                if (total > totalGood) {
                     cell.status = 'misplaced';
-                } else {
-                    cell.status = 'wrong';
                 }
-            } else {
-                cell.status = 'wrong';
             }
             return cell;
         });
-        game[row] = gameRow;
+
+        game[row] = completeRow;
         return game;
     });
+
+    const getCellStatus = (id: number, current: number) => {
+        if (current < 0) {
+            return 'blank';
+        }
+        const board = get(game);
+        const lastRow = board[current];
+        const index = lastRow.findIndex(c => c.id === id.toString());
+        if (index >= 0) {
+            return lastRow[index].status;
+        } else {
+            const cell = board.find(row => row.find(cell => cell.id === id.toString()));
+            return cell ? cell[0].status : 'blank';
+        }
+    }
 
     const reset = () => set(empty);
 
@@ -84,6 +102,7 @@ const createGame = () => {
         write,
         backspace,
         verify,
+        getCellStatus,
         reset,
     }
 }
@@ -99,5 +118,5 @@ export const isWin = derived(
 
 export const isLost = derived(
     tries,
-    $tries => $tries > 5 && !isWin
+    $tries => !get(isWin) && $tries > 6
 );

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { POKEMON_SPRITE_URL } from '$lib/constants';
+	import { game, tries } from '$lib/store/game';
 
 	export let id: number = 0;
 	export let name: string = '';
 	export let use: 'key' | 'action' = 'key';
-	export let state: 'blank' | 'misplaced' | 'correct' | 'wrong' = 'blank';
+
+	$: status = game.getCellStatus(id, $tries - 2);
 
 	const nameToIcon = {
 		backspace: '🔙',
@@ -15,7 +17,7 @@
 	$: image = `${POKEMON_SPRITE_URL}${id}.png`;
 </script>
 
-<div class="pokelmon-key state-{state}" class:action={use === 'action'} title={name} on:click>
+<div class="pokelmon-key state-{status}" class:action={use === 'action'} title={name} on:click>
 	{#if use === 'key'}
 		<img src={image} alt={name} title={`${id}`} />
 	{:else}
@@ -26,6 +28,7 @@
 <style>
 	.pokelmon-key {
 		display: flex;
+		color: var(--theme-text);
 		margin: 0.2rem;
 		justify-content: center;
 		align-items: flex-start;
@@ -61,15 +64,15 @@
 		image-rendering: auto;
 	}
 
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 1024px) {
 		.pokelmon-key {
-			width: 2rem;
-			height: 2rem;
-			font-size: medium;
+			width: 3rem;
+			height: 3rem;
+			font-size: xx-large;
 		}
 
 		img {
-			height: 25px;
+			height: 40px;
 		}
 	}
 </style>
