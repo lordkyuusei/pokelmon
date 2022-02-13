@@ -25,7 +25,9 @@ export const getCellStatus = (id: number, currentTry: number): KeyState => {
             const state: CellStatus = ['correct', 'misplaced', 'wrong'].map((status: KeyState) =>
                 ({ status, isStatus: cells.some(cell => cell.status === status) })
             ).find(({ isStatus }) => isStatus);
-            return state?.status || 'blank';
+            if (state) {
+                return state.status;
+            }
         }
     }
     return 'blank';
