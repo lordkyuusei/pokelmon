@@ -75,6 +75,8 @@
 						{$t('settings-rules-wrong')}
 					</li>
 				</ul>
+				<span>{$t('settings-rules-clue1')}</span>
+				<span>{$t('settings-rules-clue2')}</span>
 				<button on:click={() => (showHelp = !showHelp)}>{$t('settings-close')}</button>
 			{/if}
 		</div>

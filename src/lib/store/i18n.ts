@@ -2,7 +2,7 @@ import { writable, derived } from "svelte/store";
 
 const translations = {
     english: {
-        "game-goal": "Guess the team of six pokémon of the day in less than six trials",
+        "game-goal": "Guess the team of six pokémon of the day in less than {{ MAX_TRIALS }} trials",
         "game-won": "You won!",
         "game-lost": "You lost...",
         "settings-lang": "Language",
@@ -17,10 +17,12 @@ const translations = {
         "settings-rules-correct": "Green background: present & right position.",
         "settings-rules-misplaced": "Orange background: present but wrong position.",
         "settings-rules-wrong": "Red background: not present in the team.",
+        "settings-rules-clue1": "Clue 1: A Pokemon will never be surrounded by itself directly. Ex: two Ninetales side by side.",
+        "settings-rules-clue2": "Clue 2: A Pokemon will never be surrounded by Pokemon super effective against it.",
 
     },
     french: {
-        "game-goal": "Devinez l'équipe de six pokémon du jour en moins de six essais",
+        "game-goal": "Devinez l'équipe de six pokémon du jour en moins de {{ MAX_TRIALS }} essais",
         "game-won": "Victoire !",
         "game-lost": "Défaite...",
         "settings-lang": "Langue",
@@ -35,6 +37,8 @@ const translations = {
         "settings-rules-correct": "Fond vert: le Pokémon est présent et positionné correctement.",
         "settings-rules-misplaced": "Fond orange: le Pokémon est présent mais mal positionné.",
         "settings-rules-wrong": "Fond rouge: le Pokémon n'est pas présent dans l'équipe.",
+        "settings-rules-clue1": "Indice 1 : un Pokémon ne sera jamais entouré par son propre doublon directement. Ex: 2 Pharamp de suite.",
+        "settings-rules-clue2": "Indice 2 : un Pokémon ne sera jamais entouré par des congénères super efficaces contre lui. Ex: un Feunard entre un Dolmen et un Sablaireau.",
     }
 }
 export const locale = writable("english");
@@ -58,7 +62,7 @@ const translate = (locale: string, key: string, vars: { [x: string]: any; }): st
     }
 
     Object.keys(vars).map((key) => {
-        const regex = new RegExp(`{{${key}}}`, "g");
+        const regex = new RegExp(`{{ ${key} }}`, "g");
         translation = translation.replace(regex, vars[key]);
     })
 

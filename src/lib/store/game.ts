@@ -3,12 +3,13 @@ import { createGame } from './game/game';
 import { createTries } from './game/tries';
 import { createProposal } from './game/proposal';
 import type { KeyState, PokemonCell, PokemonGame } from '$lib/types/Types';
+import { MAX_TRIALS } from '$lib/constants';
 
 export const game = createGame();
 export const tries = createTries();
 export const proposal = createProposal();
 
-export const isLost = derived(tries, $tries => !get(isWin) && $tries > 6);
+export const isLost = derived(tries, $tries => !get(isWin) && $tries > MAX_TRIALS);
 export const isWin = derived(game, $game => $game[get(tries) - 1].every(cell => cell.status === 'correct'));
 
 type CellStatus = {

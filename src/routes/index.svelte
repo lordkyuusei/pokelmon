@@ -14,6 +14,7 @@
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { onMount } from 'svelte';
 	import { t } from '$lib/store/i18n';
+	import { MAX_TRIALS } from '$lib/constants';
 
 	export let seed: number = 0;
 
@@ -52,7 +53,7 @@
 
 <main>
 	<h1>Pokélmon</h1>
-	<h2>{$t('game-goal')}</h2>
+	<h2>{$t('game-goal', { MAX_TRIALS: MAX_TRIALS })}</h2>
 
 	<GuessBoard />
 	<Keyboard on:pokemon={handlePokemon} on:action={handleAction} />

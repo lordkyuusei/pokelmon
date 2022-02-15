@@ -1,0 +1,297 @@
+[
+    {
+        "id": 1,
+        "type": {
+            "fr": "Acier",
+            "en": "Steel"
+        },
+        "weaknesses": [
+            2,
+            6,
+            15
+        ],
+        "strengths": [
+            7,
+            8,
+            14
+        ]
+    },
+    {
+        "id": 2,
+        "type": {
+            "fr": "Combat",
+            "en": "Fighting"
+        },
+        "weaknesses": [
+            7,
+            13,
+            18
+        ],
+        "strengths": [
+            1,
+            8,
+            10,
+            14,
+            17
+        ]
+    },
+    {
+        "id": 3,
+        "type": {
+            "fr": "Dragon",
+            "en": "Dragon"
+        },
+        "weaknesses": [
+            3,
+            7,
+            8
+        ],
+        "strengths": [
+            3
+        ]
+    },
+    {
+        "id": 4,
+        "type": {
+            "fr": "Eau",
+            "en": "Water"
+        },
+        "weaknesses": [
+            5,
+            11
+        ],
+        "strengths": [
+            6,
+            14,
+            15
+        ]
+    },
+    {
+        "id": 5,
+        "type": {
+            "fr": "Electrique",
+            "en": "Electrik"
+        },
+        "weaknesses": [
+            15
+        ],
+        "strengths": [
+            4,
+            18
+        ]
+    },
+    {
+        "id": 6,
+        "type": {
+            "fr": "Feu",
+            "en": "Fire"
+        },
+        "weaknesses": [
+            4,
+            14,
+            15
+        ],
+        "strengths": [
+            1,
+            8,
+            9,
+            11
+        ]
+    },
+    {
+        "id": 7,
+        "type": {
+            "fr": "Fée",
+            "en": "Fairy"
+        },
+        "weaknesses": [
+            1,
+            12
+        ],
+        "strengths": [
+            3,
+            17
+        ]
+    },
+    {
+        "id": 8,
+        "type": {
+            "fr": "Glace",
+            "en": "Ice"
+        },
+        "weaknesses": [
+            1,
+            2,
+            6,
+            14
+        ],
+        "strengths": [
+            3,
+            11,
+            15,
+            18
+        ]
+    },
+    {
+        "id": 9,
+        "type": {
+            "fr": "Insecte",
+            "en": "Bug"
+        },
+        "weaknesses": [
+            6,
+            14
+        ],
+        "strengths": [
+            11,
+            13,
+            17
+        ]
+    },
+    {
+        "id": 10,
+        "type": {
+            "fr": "Normal",
+            "en": "Normal"
+        },
+        "weaknesses": [
+            2
+        ],
+        "strengths": []
+    },
+    {
+        "id": 11,
+        "type": {
+            "fr": "Plante",
+            "en": "Grass"
+        },
+        "weaknesses": [
+            4,
+            8,
+            9,
+            12,
+            18
+        ],
+        "strengths": [
+            7,
+            8,
+            14
+        ]
+    },
+    {
+        "id": 12,
+        "type": {
+            "fr": "Poison",
+            "en": "Poison"
+        },
+        "weaknesses": [
+            13,
+            15
+        ],
+        "strengths": [
+            7,
+            11
+        ]
+    },
+    {
+        "id": 13,
+        "type": {
+            "fr": "Psy",
+            "en": "Psychic"
+        },
+        "weaknesses": [
+            9,
+            16,
+            17
+        ],
+        "strengths": [
+            2,
+            12
+        ]
+    },
+    {
+        "id": 14,
+        "type": {
+            "fr": "Roche",
+            "en": "Rock"
+        },
+        "weaknesses": [
+            1,
+            2,
+            4,
+            11
+        ],
+        "strengths": [
+            6,
+            8,
+            9,
+            18
+        ]
+    },
+    {
+        "id": 15,
+        "type": {
+            "fr": "Sol",
+            "en": "Ground"
+        },
+        "weaknesses": [
+            4,
+            8,
+            11
+        ],
+        "strengths": [
+            1,
+            5,
+            6,
+            12
+        ]
+    },
+    {
+        "id": 16,
+        "type": {
+            "fr": "Spectre",
+            "en": "Ghost"
+        },
+        "weaknesses": [
+            16,
+            17
+        ],
+        "strengths": [
+            13,
+            16
+        ]
+    },
+    {
+        "id": 17,
+        "type": {
+            "fr": "Ténèbres",
+            "en": "Dark"
+        },
+        "weaknesses": [
+            2,
+            7,
+            9
+        ],
+        "strengths": [
+            13,
+            16
+        ]
+    },
+    {
+        "id": 18,
+        "type": {
+            "fr": "Vol",
+            "en": "Flying"
+        },
+        "weaknesses": [
+            5,
+            8,
+            14
+        ],
+        "strengths": [
+            2,
+            9,
+            11
+        ]
+    }
+]

@@ -1,10 +1,7 @@
 [
     {
         "id": 601,
-        "type": {
-            "fr": "Acier",
-            "en": "Steel"
-        },
+        "type": 1,
         "pokemon": {
             "fr": "Cliticlic",
             "en": "Klingklang"
@@ -12,10 +9,7 @@
     },
     {
         "id": 237,
-        "type": {
-            "fr": "Combat",
-            "en": "Fighting"
-        },
+        "type": 2,
         "pokemon": {
             "fr": "Kapoera",
             "en": "Hitmontop"
@@ -23,10 +17,7 @@
     },
     {
         "id": 706,
-        "type": {
-            "fr": "Dragon",
-            "en": "Dragon"
-        },
+        "type": 3,
         "pokemon": {
             "fr": "Muplodocus",
             "en": "Goodra"
@@ -34,10 +25,7 @@
     },
     {
         "id": 457,
-        "type": {
-            "fr": "Eau",
-            "en": "Water"
-        },
+        "type": 4,
         "pokemon": {
             "fr": "Luminéon",
             "en": "Lumineon"
@@ -45,10 +33,7 @@
     },
     {
         "id": 181,
-        "type": {
-            "fr": "Electrique",
-            "en": "Electrik"
-        },
+        "type": 5,
         "pokemon": {
             "fr": "Pharamp",
             "en": "Ampharos"
@@ -56,10 +41,7 @@
     },
     {
         "id": 38,
-        "type": {
-            "fr": "Feu",
-            "en": "Fire"
-        },
+        "type": 6,
         "pokemon": {
             "fr": "Feunard",
             "en": "Ninetales"
@@ -67,10 +49,7 @@
     },
     {
         "id": 700,
-        "type": {
-            "fr": "Fée",
-            "en": "Fairy"
-        },
+        "type": 7,
         "pokemon": {
             "fr": "Nymphali",
             "en": "Sylveon"
@@ -78,10 +57,7 @@
     },
     {
         "id": 584,
-        "type": {
-            "fr": "Glace",
-            "en": "Ice"
-        },
+        "type": 8,
         "pokemon": {
             "fr": "Sorbouboul",
             "en": "Vanilluxe"
@@ -89,10 +65,7 @@
     },
     {
         "id": 127,
-        "type": {
-            "fr": "Insecte",
-            "en": "Bug"
-        },
+        "type": 9,
         "pokemon": {
             "fr": "Scarabrute",
             "en": "Pinsir"
@@ -100,10 +73,7 @@
     },
     {
         "id": 335,
-        "type": {
-            "fr": "Normal",
-            "en": "Normal"
-        },
+        "type": 10,
         "pokemon": {
             "fr": "Mangriff",
             "en": "Zangoose"
@@ -111,10 +81,7 @@
     },
     {
         "id": 192,
-        "type": {
-            "fr": "Plante",
-            "en": "Grass"
-        },
+        "type": 11,
         "pokemon": {
             "fr": "Héliatronc",
             "en": "Sunflora"
@@ -122,10 +89,7 @@
     },
     {
         "id": 336,
-        "type": {
-            "fr": "Poison",
-            "en": "Poison"
-        },
+        "type": 12,
         "pokemon": {
             "fr": "Seviper",
             "en": "Seviper"
@@ -133,10 +97,7 @@
     },
     {
         "id": 65,
-        "type": {
-            "fr": "Psy",
-            "en": "Psychic"
-        },
+        "type": 13,
         "pokemon": {
             "fr": "Alakazam",
             "en": "Alakazam"
@@ -144,10 +105,7 @@
     },
     {
         "id": 874,
-        "type": {
-            "fr": "Roche",
-            "en": "Rock"
-        },
+        "type": 14,
         "pokemon": {
             "fr": "Dolman",
             "en": "Stonjourner"
@@ -155,10 +113,7 @@
     },
     {
         "id": 28,
-        "type": {
-            "fr": "Sol",
-            "en": "Ground"
-        },
+        "type": 15,
         "pokemon": {
             "fr": "Sablaireau",
             "en": "Sandslash"
@@ -166,10 +121,7 @@
     },
     {
         "id": 563,
-        "type": {
-            "fr": "Spectre",
-            "en": "Ghost"
-        },
+        "type": 16,
         "pokemon": {
             "fr": "Tutankafer",
             "en": "Cofagrigus"
@@ -177,10 +129,7 @@
     },
     {
         "id": 359,
-        "type": {
-            "fr": "Ténèbres",
-            "en": "Dark"
-        },
+        "type": 17,
         "pokemon": {
             "fr": "Absol",
             "en": "Absol"
@@ -188,10 +137,7 @@
     },
     {
         "id": 822,
-        "type": {
-            "fr": "Vol",
-            "en": "Flying"
-        },
+        "type": 18,
         "pokemon": {
             "fr": "Bleuseille",
             "en": "Corvisquire"

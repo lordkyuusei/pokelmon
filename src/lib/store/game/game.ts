@@ -1,15 +1,17 @@
 import { get, writable } from "svelte/store";
-import type { PokemonGame, PokemonRow } from "$lib/types/Types";
+import type { PokemonGame, PokemonRow, KeyState } from "$lib/types/Types";
+import { MAX_TRIALS } from "$lib/constants";
 
 export const createGame = () => {
-    const empty: PokemonGame = [
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-        [{ id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }, { id: 0, status: 'blank' }],
-    ];
+    const empty: PokemonGame = [...Array(MAX_TRIALS)]
+        .map(() => ([
+            { id: 0, status: "blank" },
+            { id: 0, status: "blank" },
+            { id: 0, status: "blank" },
+            { id: 0, status: "blank" },
+            { id: 0, status: "blank" },
+            { id: 0, status: "blank" }
+        ]));
 
     const { subscribe, set, update } = writable(empty);
 
