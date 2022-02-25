@@ -114,7 +114,7 @@
 
 	.pokelmon-guessboard-debug {
 		display: grid;
-		grid-template-columns: repeat(6, 50px);
+		grid-template-columns: repeat(6, 1fr);
 		gap: 0.2rem;
 		margin: 1rem auto;
 		background-color: blueviolet;
@@ -143,8 +143,9 @@
 
 	img {
 		image-rendering: pixelated;
-		height: 42px;
-		margin-top: -10px;
+		height: 60px;
+		width: 70px;
+		margin-top: -20px;
 	}
 
 	.guessboard-row {
