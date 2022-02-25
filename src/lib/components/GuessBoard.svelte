@@ -1,9 +1,36 @@
 <script lang="ts">
 	import { game, isLost, isWin, proposal } from '$lib/store/game';
 	import { POKEMON_ICON_URL } from '$lib/constants';
-	import { dev } from '$app/env';
+	import { browser, dev } from '$app/env';
 	import Popup from './Popup.svelte';
 	import { t } from '$lib/store/i18n';
+
+	const mapGuessToIcon = {
+		blank: '🟫',
+		correct: '🟩',
+		incorrect: '🟥',
+		misplaced: '🟧'
+	};
+
+	let clipboardStatus = $t('game-copy');
+
+	// write to clipboard
+	const writeClipboard = async () => {
+		if (browser) {
+			const nbrTries = $game.filter((row) => row.every((cell) => cell.status !== 'blank')).length;
+			const totalTries = $game.length;
+			const header = `${$t('game-clipboard-header')} - ${nbrTries}/${totalTries}`;
+			const tries = $game.map((row) => row.map((guess) => mapGuessToIcon[guess.status])).join('\n');
+			await navigator.clipboard
+				.writeText(header + '\n' + tries)
+				.then(() => {
+					clipboardStatus = $t('game-copy-success');
+				})
+				.catch(() => {
+					clipboardStatus = $t('game-copy-failure');
+				});
+		}
+	};
 </script>
 
 <div class="pokelmon-guessboard">
@@ -21,27 +48,27 @@
 </div>
 {#if $isWin || $isLost}
 	<Popup show size="lg">
-		{#if $isWin}
-			<div class="victory">
-				<h3>{$t('game-won')}</h3>
-				<div class="">
-					{#each $proposal as id}
-						<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
-					{/each}
-				</div>
+		<div class:victory={$isWin} class:defeat={$isLost}>
+			<h1>{$t(`game-${$isWin ? 'won' : 'lost'}`)}</h1>
+			<div class="display-tries">
+				{#each $game as row}
+					<div class="try-square">
+						{#each row as guess}
+							<span>{mapGuessToIcon[guess.status]}</span>
+						{/each}
+					</div>
+				{/each}
 			</div>
-		{:else}
-			<div class="defeat">
-				<h3>{$t('game-lost')}</h3>
-				<div class="pokelmon-guessboard-debug">
-					{#each $proposal as id}
-						<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
-					{/each}
-				</div>
+			<button on:click={writeClipboard}>{clipboardStatus}</button>
+			<div class="display-solution">
+				{#each $proposal as id}
+					<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
+				{/each}
 			</div>
-		{/if}
+		</div>
 	</Popup>
 {/if}
+
 {#if dev}
 	<div class="pokelmon-guessboard-debug">
 		{#each $proposal as id}
@@ -51,6 +78,28 @@
 {/if}
 
 <style>
+	h1 {
+		color: var(--theme-text);
+	}
+
+	button {
+		border-radius: 25px;
+		background-color: var(--theme-secondary);
+		color: var(--theme-background);
+		padding: 0.5rem;
+		height: fit-content;
+		width: fit-content;
+	}
+
+	.display-tries {
+		width: 100%;
+	}
+
+	.try-square {
+		margin: 0.5rem;
+		font-size: large;
+	}
+
 	.pokelmon-guessboard {
 		width: 100%;
 		height: 100%;

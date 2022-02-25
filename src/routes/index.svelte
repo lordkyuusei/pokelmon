@@ -9,14 +9,24 @@
 </script>
 
 <script lang="ts">
-	import { game, tries, proposal, isWin, isLost } from '$lib/store/game';
-	import GuessBoard from '$lib/components/GuessBoard.svelte';
-	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { onMount } from 'svelte';
+	import {
+		collection,
+		getDocs,
+		getFirestore,
+		query,
+		where,
+		documentId,
+		doc,
+		setDoc
+	} from 'firebase/firestore';
+	import { initializeApp } from 'firebase/app';
+	import Keyboard from '$lib/components/Keyboard.svelte';
+	import GuessBoard from '$lib/components/GuessBoard.svelte';
+
 	import { t } from '$lib/store/i18n';
 	import { MAX_TRIALS } from '$lib/constants';
-
-	export let seed: number = 0;
+	import { game, tries, proposal, isWin, isLost } from '$lib/store/game';
 
 	const handlePokemon = (event) => {
 		const { pokemon } = event.detail;
@@ -25,7 +35,7 @@
 	};
 
 	const handleValidate = () => {
-		if (!$isWin || !$isLost) {
+		if (!$isWin && !$isLost) {
 			if ($game[$tries - 1].findIndex((p) => p.id === 0) === -1) {
 				game.verify($tries - 1, $proposal);
 				tries.increment();
@@ -36,7 +46,7 @@
 	const handleBackspace = () => game.backspace($tries - 1);
 
 	const handleAction = (event) => {
-		if (!$isWin || !$isLost) {
+		if (!$isWin && !$isLost) {
 			const events = {
 				backspace: () => handleBackspace(),
 				enter: () => handleValidate()
@@ -46,8 +56,41 @@
 		}
 	};
 
-	onMount(() => {
-		proposal.init(seed);
+	onMount(async () => {
+		const {
+			VITE_FB_API_KEY,
+			VITE_FB_DOMAIN,
+			VITE_FB_PROJECT_ID,
+			VITE_FB_STORAGE_BUCKET,
+			VITE_FB_MESSAGING_SENDER_ID,
+			VITE_FB_APP_ID
+		} = import.meta.env;
+
+		const fireApp = initializeApp({
+			apiKey: VITE_FB_API_KEY,
+			authDomain: VITE_FB_DOMAIN,
+			projectId: VITE_FB_PROJECT_ID,
+			storageBucket: VITE_FB_STORAGE_BUCKET,
+			messagingSenderId: VITE_FB_MESSAGING_SENDER_ID,
+			appId: VITE_FB_APP_ID
+		});
+
+		const date = new Date();
+		const dailyId = `chal-${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+		const daily_challenge = await getDocs(
+			query(collection(getFirestore(fireApp), 'challenges'), where(documentId(), '==', dailyId))
+		);
+
+		if (daily_challenge.empty) {
+			const challenge = proposal.init();
+			const save = await setDoc(doc(getFirestore(fireApp), 'challenges', dailyId), {
+				id: dailyId,
+				challenge
+			});
+		} else {
+			const { challenge } = daily_challenge.docs[0].data();
+			proposal.init(challenge);
+		}
 	});
 </script>
 

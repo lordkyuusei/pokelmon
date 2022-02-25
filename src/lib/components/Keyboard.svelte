@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-
+	import { isWin, isLost } from '$lib/store/game';
 	import Key from './Key.svelte';
 	import pokemon from '$lib/store/alphabet.json';
 	import type { PokemonKey } from '$lib/types/Types';
@@ -17,7 +17,7 @@
 	const handleSpecial = (event) => dispatch('action', { action: event.target.title });
 </script>
 
-<div class="pokelmon-keyboard">
+<div class="pokelmon-keyboard" class:disable={$isWin || $isLost}>
 	<div class="keyboard-row first">
 		{#each firstRow as key}
 			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
@@ -41,6 +41,11 @@
 	.pokelmon-keyboard {
 		width: 100%;
 	}
+
+	.disable {
+		opacity: 0.8;
+	}
+
 	.keyboard-row {
 		display: flex;
 		flex-direction: row;

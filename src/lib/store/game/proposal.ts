@@ -31,15 +31,21 @@ export const createProposal = () => {
             return draw;
         }
     }
-    const init = (_: any) => {
-        let previousPokemonType = 1;
-        const challenge = [...Array(6)].map(() => {
-            const randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
-            const finalPokemon = rollUntilNotWeak(randomPokemon, previousPokemonType);
-            previousPokemonType = finalPokemon.type;
-            return finalPokemon.id;
-        });
-        set(challenge);
+
+    const init = (daily_challenge?: number[]) => {
+        if (!daily_challenge) {
+            let previousPokemonType = 1;
+            const challenge = [...Array(6)].map(() => {
+                const randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
+                const finalPokemon = rollUntilNotWeak(randomPokemon, previousPokemonType);
+                previousPokemonType = finalPokemon.type;
+                return finalPokemon.id;
+            });
+            set(challenge);
+            return challenge;
+        }
+        set(daily_challenge);
+        return daily_challenge;
     };
 
     return {

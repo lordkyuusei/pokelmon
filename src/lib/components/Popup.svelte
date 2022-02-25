@@ -13,7 +13,7 @@
 		text-align: center;
 		font-family: 'Cascadia Code', monospace;
 		font-size: 0.8rem;
-		top: 0;
+		top: 20vh;
 		left: 0;
 		width: 100%;
 		height: 100%;
@@ -26,6 +26,7 @@
 
 	.show {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		justify-items: center;
 	}

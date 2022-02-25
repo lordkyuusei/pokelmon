@@ -8,7 +8,7 @@ export type PokemonGame = PokemonRow[];
 
 export type PokemonKey = {
     id: number;
-    type: ElementRef;
+    type: number;
     pokemon: ElementRef;
 }
 
