@@ -8,7 +8,7 @@
 	const mapGuessToIcon = {
 		blank: '🟫',
 		correct: '🟩',
-		incorrect: '🟥',
+		wrong: '🟥',
 		misplaced: '🟧'
 	};
 
