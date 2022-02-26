@@ -171,4 +171,11 @@
 	.cell-wrong {
 		background-color: rgb(255, 0, 170);
 	}
+
+	@media screen and (min-width: 768px) {
+		header {
+			justify-content: center;
+			gap: 1rem;
+		}
+	}
 </style>
