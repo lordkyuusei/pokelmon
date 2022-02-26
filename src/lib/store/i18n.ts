@@ -6,9 +6,11 @@ const translations = {
         "game-won": "You won!",
         "game-lost": "You lost...",
         "game-copy": "Copy result",
+        "game-copy-ongoing": "Copy...",
+        "game-copy-success": "Copied to clipboard ✅",
+        "game-copy-failure": "Failed to copy to clipboard ❌",
         "game-clipboard-header": "Kyuu's Pokelmon",
-        "game-copy-success": "Copied to clipboard",
-        "game-copy-failure": "Failed to copy to clipboard",
+        "game-result-show": "Show game's result",
         "settings-lang": "Language",
         "settings-lang-en": "English",
         "settings-lang-fr": "French",
@@ -22,7 +24,7 @@ const translations = {
         "settings-rules-misplaced": "Orange background: present but wrong position.",
         "settings-rules-wrong": "Red background: not present in the team.",
         "settings-rules-clue1": "Clue 1: A Pokemon will never be surrounded by itself directly. Ex: two Ninetales side by side.",
-        "settings-rules-clue2": "Clue 2: A Pokemon will never be surrounded by Pokemon super effective against it.",
+        "settings-rules-clue2": "Clue 2: A Pokemon will never be surrounded by Pokemon super effective against it. Ex: Ninetales surrounded by Sandslash & Stornjourner",
 
     },
     french: {
@@ -30,9 +32,11 @@ const translations = {
         "game-won": "Victoire !",
         "game-lost": "Défaite...",
         "game-copy": "Copier le résultat",
+        "game-copy-ongoing": "Copie en cours...",
+        "game-copy-success": "Copié dans le presse-papier ✅",
+        "game-copy-failure": "Impossible de copier dans le presse-papier ❌",
         "game-clipboard-header": "Kyuu's Pokelmon",
-        "game-copy-success": "Copié dans le presse-papier",
-        "game-copy-failure": "Impossible de copier dans le presse-papier",
+        "game-result-show": "Montrer le score",
         "settings-lang": "Langue",
         "settings-lang-en": "Anglais",
         "settings-lang-fr": "Français",
@@ -46,7 +50,7 @@ const translations = {
         "settings-rules-misplaced": "Fond orange: le Pokémon est présent mais mal positionné.",
         "settings-rules-wrong": "Fond rouge: le Pokémon n'est pas présent dans l'équipe.",
         "settings-rules-clue1": "Indice 1 : un Pokémon ne sera jamais entouré par son propre doublon directement. Ex: 2 Pharamp de suite.",
-        "settings-rules-clue2": "Indice 2 : un Pokémon ne sera jamais entouré par des congénères super efficaces contre lui. Ex: un Feunard entre un Dolmen et un Sablaireau.",
+        "settings-rules-clue2": "Indice 2 : un Pokémon ne sera jamais entouré par des congénères super efficaces contre lui. Ex: pas de Feunard entre Dolman & Sablaireau.",
     }
 }
 export const locale = writable("english");
