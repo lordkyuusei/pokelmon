@@ -10,6 +10,8 @@
 	let showHelp = false;
 
 	const updateLocale = () => localStorage.setItem('locale', $locale);
+	const exampleTeam = [123, 432, 592, 3, 715, 325];
+
 	onMount(() => {
 		$locale = localStorage.getItem('locale') || 'english';
 	});
@@ -21,11 +23,18 @@
 
 <ThemeContext>
 	<header>
-		<button class="icon" on:click={() => (showSettings = !showSettings)}>⚙️</button>
-		<button class="icon" on:click={() => (showHelp = !showHelp)}>❓</button>
+		<button class="icon" on:click={() => (showSettings = true)}>⚙️</button>
+		<button class="icon" on:click={() => (showHelp = true)}>❓</button>
 	</header>
 
-	<Popup show={showHelp || showSettings} size={showHelp ? 'lg' : showSettings ? 'md' : 'sm'}>
+	<Popup
+		show={showHelp || showSettings}
+		close={() => {
+			showHelp = false;
+			showSettings = false;
+		}}
+		size={showHelp ? 'lg' : showSettings ? 'md' : 'sm'}
+	>
 		<div class="content show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
 			{#if showSettings}
 				<h3>{$t('settings-lang')}</h3>
@@ -40,29 +49,20 @@
 				<div class="accessibility">
 					<ThemeToggle />
 				</div>
-				<button on:click={() => (showSettings = !showSettings)}>Close</button>
 			{:else if showHelp}
 				<h3>{$t('settings-rules')}</h3>
 				<p>{$t('settings-rules-1')}</p>
 				<div class="example">
-					<div class="row-cell cell-misplaced">
-						<img src="{POKEMON_ICON_URL}123.png" alt="123" />
-					</div>
-					<div class="row-cell cell-correct">
-						<img src="{POKEMON_ICON_URL}432.png" alt="432" />
-					</div>
-					<div class="row-cell cell-wrong">
-						<img src="{POKEMON_ICON_URL}541.png" alt="541" />
-					</div>
-					<div class="row-cell cell-wrong">
-						<img src="{POKEMON_ICON_URL}326.png" alt="326" />
-					</div>
-					<div class="row-cell cell-misplaced">
-						<img src="{POKEMON_ICON_URL}623.png" alt="623" />
-					</div>
-					<div class="row-cell cell-correct">
-						<img src="{POKEMON_ICON_URL}264.png" alt="264" />
-					</div>
+					{#each exampleTeam as id}
+						<div
+							class="row-cell"
+							class:cell-misplaced={id % 2 === 0}
+							class:cell-wrong={id % 5 === 0}
+							class:cell-correct={id % 3 === 0}
+						>
+							<img src={`${POKEMON_ICON_URL}${id}.png`} alt={`${id}`} />
+						</div>
+					{/each}
 				</div>
 				<ul>
 					<li>
@@ -76,8 +76,8 @@
 					</li>
 				</ul>
 				<span>{$t('settings-rules-clue1')}</span>
+				<br />
 				<span>{$t('settings-rules-clue2')}</span>
-				<button on:click={() => (showHelp = !showHelp)}>{$t('settings-close')}</button>
 			{/if}
 		</div>
 	</Popup>
@@ -97,9 +97,13 @@
 		font-family: 'Cascadia Code', monospace;
 	}
 
+	ul,
+	span {
+		text-align: initial;
+	}
+
 	.content {
 		padding: 0.5rem;
-		width: 80%;
 		color: var(--theme-text);
 		background-color: var(--theme-background);
 		border: 1px solid var(--theme-border);

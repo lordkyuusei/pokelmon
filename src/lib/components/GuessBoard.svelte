@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { game, isLost, isWin, proposal } from '$lib/store/game';
-	import { POKEMON_ICON_URL } from '$lib/constants';
 	import { browser, dev } from '$app/env';
+
 	import Popup from './Popup.svelte';
 	import { t } from '$lib/store/i18n';
+	import { POKEMON_ICON_URL } from '$lib/constants';
+	import { game, isLost, isWin, proposal } from '$lib/store/game';
 
 	const mapGuessToIcon = {
-		blank: '🟫',
-		correct: '🟩',
+		blank: '🔳',
 		wrong: '🟥',
+		correct: '🟩',
 		misplaced: '🟧'
 	};
 
 	let clipboardStatus = $t('game-copy');
+	let show: boolean = true;
 
 	// write to clipboard
 	const writeClipboard = async () => {
@@ -39,15 +41,17 @@
 			{#each row as cell}
 				<div class="row-cell cell-{cell.status}">
 					{#if cell.id !== 0}
-						<img src="{POKEMON_ICON_URL}{cell.id}.png" alt={`${cell.id}`} />
+						<img src="{POKEMON_ICON_URL}{cell.id}.png" alt={`${cell.id}`} title={`${cell.id}`} />
 					{/if}
 				</div>
 			{/each}
 		</div>
 	{/each}
 </div>
+
 {#if $isWin || $isLost}
-	<Popup show size="lg">
+	<button on:click={() => (show = true)}>{$t('game-result-show')}</button>
+	<Popup {show} close={() => (show = false)} size="lg">
 		<div class:victory={$isWin} class:defeat={$isLost}>
 			<h1>{$t(`game-${$isWin ? 'won' : 'lost'}`)}</h1>
 			<div class="display-tries">
@@ -60,11 +64,6 @@
 				{/each}
 			</div>
 			<button on:click={writeClipboard}>{clipboardStatus}</button>
-			<div class="display-solution">
-				{#each $proposal as id}
-					<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
-				{/each}
-			</div>
 		</div>
 	</Popup>
 {/if}
@@ -83,6 +82,7 @@
 	}
 
 	button {
+		margin: 0.5rem;
 		border-radius: 25px;
 		background-color: var(--theme-secondary);
 		color: var(--theme-background);
@@ -96,8 +96,7 @@
 	}
 
 	.try-square {
-		margin: 0.5rem;
-		font-size: large;
+		font-size: x-large;
 	}
 
 	.pokelmon-guessboard {
@@ -114,6 +113,7 @@
 
 	.pokelmon-guessboard-debug {
 		display: grid;
+		height: 50px;
 		grid-template-columns: repeat(6, 1fr);
 		gap: 0.2rem;
 		margin: 1rem auto;
@@ -123,7 +123,8 @@
 	.victory,
 	.defeat {
 		padding: 0.5rem;
-		width: 80%;
+		width: 100%;
+		height: 100%;
 		color: var(--theme-background);
 		border: 1px solid var(--theme-border);
 		box-shadow: var(--theme-shadow);
@@ -134,7 +135,7 @@
 	}
 
 	.victory {
-		background-color: #a6ff9e;
+		background-color: #477045;
 	}
 
 	.defeat {
@@ -217,7 +218,10 @@
 		}
 
 		img {
-			height: 30px;
+			image-rendering: pixelated;
+			height: 100%;
+			width: 50px;
+			margin-top: -20px;
 		}
 	}
 </style>
