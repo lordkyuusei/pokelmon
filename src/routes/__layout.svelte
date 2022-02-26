@@ -24,6 +24,7 @@
 <ThemeContext>
 	<header>
 		<button class="icon" on:click={() => (showSettings = true)}>⚙️</button>
+		<h1>Pokélmon</h1>
 		<button class="icon" on:click={() => (showHelp = true)}>❓</button>
 	</header>
 
@@ -35,7 +36,7 @@
 		}}
 		size={showHelp ? 'lg' : showSettings ? 'md' : 'sm'}
 	>
-		<div class="content show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
+		<div class="show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
 			{#if showSettings}
 				<h3>{$t('settings-lang')}</h3>
 				<div class="languages">
@@ -76,7 +77,6 @@
 					</li>
 				</ul>
 				<span>{$t('settings-rules-clue1')}</span>
-				<br />
 				<span>{$t('settings-rules-clue2')}</span>
 			{/if}
 		</div>
@@ -92,26 +92,33 @@
 		background-color: var(--theme-alt-background);
 	}
 
+	h1 {
+		font-size: 2.5em;
+		margin: 0.5rem;
+		color: var(--theme-text);
+		background-color: var(--theme-alt-background);
+		text-align: center;
+		font-family: 'Cascadia Code', monospace;
+	}
+
 	h3 {
 		text-align: center;
 		font-family: 'Cascadia Code', monospace;
 	}
 
-	ul,
-	span {
+	ul {
 		text-align: initial;
 	}
 
-	.content {
-		padding: 0.5rem;
-		color: var(--theme-text);
-		background-color: var(--theme-background);
-		border: 1px solid var(--theme-border);
-		box-shadow: var(--theme-shadow);
+	.show-help,
+	.show-settings {
+		width: 100%;
+		height: 100%;
 		display: flex;
-		flex-direction: column;
-		align-content: center;
 		align-items: center;
+		align-content: center;
+		flex-direction: column;
+		justify-content: space-around;
 	}
 
 	.languages,
@@ -124,12 +131,14 @@
 		height: 100%;
 	}
 
-	button:not(.icon) {
-		width: 50%;
-		height: 2rem;
-		border-radius: 50px;
-		font: inherit;
-		margin: 0.2rem;
+	button {
+		margin: 0.5rem;
+		border-radius: 25px;
+		border-color: var(--theme-secondary);
+		color: var(--theme-background);
+		padding: 0.5rem;
+		height: fit-content;
+		width: fit-content;
 	}
 
 	.example {
