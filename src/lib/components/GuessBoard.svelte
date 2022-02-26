@@ -1,38 +1,9 @@
 <script lang="ts">
 	import { browser, dev } from '$app/env';
 
-	import Popup from './Popup.svelte';
-	import { t } from '$lib/store/i18n';
 	import { POKEMON_ICON_URL } from '$lib/constants';
-	import { game, isLost, isWin, proposal } from '$lib/store/game';
-
-	const mapGuessToIcon = {
-		blank: '🔳',
-		wrong: '🟥',
-		correct: '🟩',
-		misplaced: '🟧'
-	};
-
-	let clipboardStatus = $t('game-copy');
-	let show: boolean = true;
-
-	// write to clipboard
-	const writeClipboard = async () => {
-		if (browser) {
-			const nbrTries = $game.filter((row) => row.every((cell) => cell.status !== 'blank')).length;
-			const totalTries = $game.length;
-			const header = `${$t('game-clipboard-header')} - ${nbrTries}/${totalTries}`;
-			const tries = $game.map((row) => row.map((guess) => mapGuessToIcon[guess.status])).join('\n');
-			await navigator.clipboard
-				.writeText(header + '\n' + tries)
-				.then(() => {
-					clipboardStatus = $t('game-copy-success');
-				})
-				.catch(() => {
-					clipboardStatus = $t('game-copy-failure');
-				});
-		}
-	};
+	import { game, proposal } from '$lib/store/game';
+	import ResultView from './ResultView.svelte';
 </script>
 
 <div class="pokelmon-guessboard">
@@ -49,24 +20,7 @@
 	{/each}
 </div>
 
-{#if $isWin || $isLost}
-	<button on:click={() => (show = true)}>{$t('game-result-show')}</button>
-	<Popup {show} close={() => (show = false)} size="lg">
-		<div class:victory={$isWin} class:defeat={$isLost}>
-			<h1>{$t(`game-${$isWin ? 'won' : 'lost'}`)}</h1>
-			<div class="display-tries">
-				{#each $game as row}
-					<div class="try-square">
-						{#each row as guess}
-							<span>{mapGuessToIcon[guess.status]}</span>
-						{/each}
-					</div>
-				{/each}
-			</div>
-			<button on:click={writeClipboard}>{clipboardStatus}</button>
-		</div>
-	</Popup>
-{/if}
+<ResultView />
 
 {#if dev}
 	<div class="pokelmon-guessboard-debug">
@@ -77,28 +31,6 @@
 {/if}
 
 <style>
-	h1 {
-		color: var(--theme-text);
-	}
-
-	button {
-		margin: 0.5rem;
-		border-radius: 25px;
-		background-color: var(--theme-secondary);
-		color: var(--theme-background);
-		padding: 0.5rem;
-		height: fit-content;
-		width: fit-content;
-	}
-
-	.display-tries {
-		width: 100%;
-	}
-
-	.try-square {
-		font-size: x-large;
-	}
-
 	.pokelmon-guessboard {
 		width: 100%;
 		height: 100%;
@@ -118,28 +50,6 @@
 		gap: 0.2rem;
 		margin: 1rem auto;
 		background-color: blueviolet;
-	}
-
-	.victory,
-	.defeat {
-		padding: 0.5rem;
-		width: 100%;
-		height: 100%;
-		color: var(--theme-background);
-		border: 1px solid var(--theme-border);
-		box-shadow: var(--theme-shadow);
-		display: flex;
-		flex-direction: column;
-		align-content: center;
-		align-items: center;
-	}
-
-	.victory {
-		background-color: #477045;
-	}
-
-	.defeat {
-		background-color: #ff9e9e;
 	}
 
 	img {
