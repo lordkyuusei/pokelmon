@@ -1,13 +1,3 @@
-<script context="module" lang="ts">
-	export const load = async ({ params, fetch }) => {
-		return {
-			props: {
-				seed: 1
-			}
-		};
-	};
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import {
@@ -21,6 +11,7 @@
 		setDoc
 	} from 'firebase/firestore';
 	import { initializeApp } from 'firebase/app';
+
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import GuessBoard from '$lib/components/GuessBoard.svelte';
 
@@ -95,7 +86,6 @@
 </script>
 
 <main>
-	<h1>Pokélmon</h1>
 	<h2>{$t('game-goal', { MAX_TRIALS: MAX_TRIALS })}</h2>
 
 	<GuessBoard />
@@ -113,17 +103,11 @@
 		background-color: var(--theme-alt-background);
 	}
 
-	h1,
 	h2 {
 		color: var(--theme-text);
 		background-color: var(--theme-alt-background);
 		text-align: center;
 		font-family: 'Cascadia Code', monospace;
-	}
-
-	h1 {
-		font-size: 3em;
-		margin: 0 0 0 10px;
 	}
 
 	h2 {
