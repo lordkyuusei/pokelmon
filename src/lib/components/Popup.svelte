@@ -1,11 +1,17 @@
 <script lang="ts">
 	export let show: boolean = false;
 	export let size: 'sm' | 'md' | 'lg';
+	export let game: boolean = false;
 	export let close: () => void;
+
+	const closeGame = () => {
+		game = false;
+		close();
+	};
 </script>
 
-<div class="popup size-{size}" class:show class:hide={!show}>
-	<div class="popup-close" on:click={close}>❌</div>
+<div class="popup size-{size}" class:show class:hide={!show} class:game>
+	<div class="popup-close" on:click={closeGame}>❌</div>
 	<slot />
 </div>
 
@@ -30,17 +36,19 @@
 		color: var(--theme-text);
 		box-shadow: var(--theme-shadow);
 		background-color: var(--theme-background);
+		transition: all 0.3s ease-in;
 	}
 
 	.show {
 		top: 20vh;
-		transition: all 0.3s ease-out;
 	}
 
 	.hide {
 		top: -100vh;
-		height: 1vh;
-		transition: all 0.3s ease-in;
+	}
+
+	.game {
+		transition: all 0.3s ease-in 1500ms;
 	}
 
 	.popup-close {
@@ -76,7 +84,6 @@
 	@media screen and (max-width: 768px) {
 		.show {
 			top: 10vh;
-			transition: all 0.3s ease-out;
 		}
 
 		.size-lg,

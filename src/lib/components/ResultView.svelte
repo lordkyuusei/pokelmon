@@ -13,8 +13,14 @@
 		misplaced: '🟧'
 	};
 
-	let showResult: boolean = true;
+	let showResult: boolean = false;
 	let clipboardStatus = $t('game-copy');
+
+	$: {
+		if ($isWin || $isLost) {
+			showResult = true;
+		}
+	}
 
 	// write to clipboard
 	const writeClipboard = async () => {
@@ -34,29 +40,29 @@
 	};
 </script>
 
-{#if $isWin || $isLost}
-	<Popup show={showResult} close={() => (showResult = false)} size="lg">
-		<div class:victory={$isWin} class:defeat={$isLost}>
-			<h1>{$t(`game-${$isWin ? 'won' : 'lost'}`)}</h1>
-			<div class="display-tries">
-				{#each $game as row}
-					<div class="try-square">
-						{#each row as guess}
-							<span>{mapGuessToIcon[guess.status]}</span>
-						{/each}
-					</div>
-				{/each}
-			</div>
-			<button on:click={writeClipboard}>{clipboardStatus}</button>
-			<div class="display-solution">
-				{#each $proposal as id}
-					<div class="solution-square">
-						<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={id} title={id} />
-					</div>
-				{/each}
-			</div>
+<Popup show={showResult} game={true} close={() => (showResult = false)} size="lg">
+	<div class:victory={$isWin} class:defeat={$isLost}>
+		<h1>{$t(`game-${$isWin ? 'won' : 'lost'}`)}</h1>
+		<div class="display-tries">
+			{#each $game as row}
+				<div class="try-square">
+					{#each row as guess}
+						<span>{mapGuessToIcon[guess.status]}</span>
+					{/each}
+				</div>
+			{/each}
 		</div>
-	</Popup>
+		<button on:click={writeClipboard}>{clipboardStatus}</button>
+		<div class="display-solution">
+			{#each $proposal as id}
+				<div class="solution-square">
+					<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={id} title={id} />
+				</div>
+			{/each}
+		</div>
+	</div>
+</Popup>
+{#if $isWin || $isLost}
 	<button on:click={() => (showResult = true)}>{$t('game-result-show')}</button>
 {/if}
 
