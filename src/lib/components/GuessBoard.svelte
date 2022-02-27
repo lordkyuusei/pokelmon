@@ -3,14 +3,21 @@
 
 	import { POKEMON_ICON_REL_URL } from '$lib/constants';
 	import { game, proposal } from '$lib/store/game';
+	import { createEventDispatcher } from 'svelte';
 	import ResultView from './ResultView.svelte';
+
+	const dispatch = createEventDispatcher();
+
+	const solve = () => {
+		$proposal.forEach((id) => dispatch('pokemon', { pokemon: id }));
+	};
 </script>
 
 <div class="pokelmon-guessboard">
 	{#each $game as row, index}
 		<div class="guessboard-row row-{index}">
-			{#each row as cell}
-				<div class="row-cell cell-{cell.status}">
+			{#each row as cell, index}
+				<div class="row-cell cell-{index} cell-{cell.status}">
 					{#if cell.id !== 0}
 						<img
 							src="{POKEMON_ICON_REL_URL}{cell.id}.png"
@@ -31,6 +38,7 @@
 		{#each $proposal as id}
 			<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={`${id}`} />
 		{/each}
+		<button on:click={solve}>Solve</button>
 	</div>
 {/if}
 
@@ -79,35 +87,36 @@
 		width: 4rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
+		transition: background-color 0.5s ease;
+	}
+
+	.cell-0 {
+		transition-delay: 0ms;
+	}
+
+	.cell-1 {
+		transition-delay: 250ms;
+	}
+
+	.cell-2 {
+		transition-delay: 500ms;
+	}
+
+	.cell-3 {
+		transition-delay: 750ms;
+	}
+
+	.cell-4 {
+		transition-delay: 1000ms;
+	}
+
+	.cell-5 {
+		transition-delay: 1250ms;
 	}
 
 	.message {
 		display: flex;
 		margin-bottom: 3rem;
-	}
-
-	.row-0 {
-		grid-row: 1;
-	}
-
-	.row-1 {
-		grid-row: 2;
-	}
-
-	.row-2 {
-		grid-row: 3;
-	}
-
-	.row-3 {
-		grid-row: 4;
-	}
-
-	.row-4 {
-		grid-row: 5;
-	}
-
-	.row-5 {
-		grid-row: 6;
 	}
 
 	.cell-blank {

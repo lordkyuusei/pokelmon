@@ -88,7 +88,7 @@
 <main>
 	<h2>{$t('game-goal', { MAX_TRIALS: MAX_TRIALS })}</h2>
 
-	<GuessBoard />
+	<GuessBoard on:pokemon={handlePokemon} />
 	<Keyboard on:pokemon={handlePokemon} on:action={handleAction} />
 </main>
 
