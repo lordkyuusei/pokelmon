@@ -10,7 +10,7 @@
 	let showHelp = false;
 
 	const updateLocale = () => localStorage.setItem('locale', $locale);
-	const exampleTeam = [123, 432, 592, 3, 715, 325];
+	const exampleTeam = [123, 432, 376, 3, 715, 325];
 
 	onMount(() => {
 		$locale = localStorage.getItem('locale') || 'english';
