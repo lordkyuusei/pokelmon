@@ -40,7 +40,7 @@
 	}
 
 	.show {
-		top: 20vh;
+		top: 10vh;
 	}
 
 	.hide {
@@ -73,10 +73,6 @@
 		height: 50vh;
 	}
 
-	.size-lg {
-		height: fit-content;
-	}
-
 	.size-md {
 		height: 30vh;
 	}
@@ -93,6 +89,10 @@
 
 		.size-md {
 			height: 45vh;
+		}
+
+		.size-lg {
+			height: 80vh;
 		}
 	}
 </style>

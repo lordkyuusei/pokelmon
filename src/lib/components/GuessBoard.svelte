@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser, dev } from '$app/env';
+	import { dev } from '$app/env';
 
 	import { POKEMON_ICON_REL_URL } from '$lib/constants';
 	import { game, proposal } from '$lib/store/game';
@@ -10,6 +10,10 @@
 
 	const solve = () => {
 		$proposal.forEach((id) => dispatch('pokemon', { pokemon: id }));
+	};
+
+	const guess = () => {
+		[28, 28, 28, 28, 28, 28].forEach((id) => dispatch('pokemon', { pokemon: id }));
 	};
 </script>
 
@@ -39,7 +43,10 @@
 			<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={`${id}`} />
 		{/each}
 	</div>
-	<button on:click={solve}>Solve</button>
+	<div style="display: flex">
+		<button on:click={solve}>Solve</button>
+		<button on:click={guess}>Guess</button>
+	</div>
 {/if}
 
 <style>
@@ -138,6 +145,14 @@
 
 	.cell-wrong {
 		background-color: rgb(255, 0, 170);
+	}
+
+	.cell-clue {
+		background-color: rgb(68, 0, 255);
+	}
+
+	.cell-guess {
+		background-color: var(--theme-primary);
 	}
 
 	@media screen and (max-width: 600px) {

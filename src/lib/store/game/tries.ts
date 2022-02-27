@@ -6,6 +6,7 @@ export const createTries = () => {
     return {
         subscribe,
         increment: () => update(tries => tries + 1),
+        decrement: () => update(tries => tries - 1),
         reset: () => set(1),
     }
 }
