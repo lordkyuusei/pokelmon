@@ -40,9 +40,13 @@ export const createGame = () => {
         const misplacedRow: PokemonRow = wrongRow.map((cell, _, cells) => {
             if (['blank', 'wrong'].includes(cell.status)) {
                 const siblings = cells.filter(c => c.id === cell.id);
+
                 const challengeSiblings = challenge.filter(c => c === cell.id);
+
                 const correctS = siblings.filter(c => c.id === cell.id && c.status === 'correct').length;
+
                 const misplaced = challengeSiblings.length - correctS;
+
                 const wrong = siblings.length - misplaced - correctS;
 
                 return {
