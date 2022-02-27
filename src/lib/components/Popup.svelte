@@ -66,7 +66,7 @@
 	}
 
 	.size-lg {
-		height: 60vh;
+		height: fit-content;
 	}
 
 	.size-md {
@@ -82,10 +82,6 @@
 		.size-lg,
 		.size-md {
 			width: 90vw;
-		}
-
-		.size-lg {
-			height: 80vh;
 		}
 
 		.size-md {

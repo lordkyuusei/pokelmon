@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/env';
 	import { t } from '$lib/store/i18n';
+	import { POKEMON_ICON_REL_URL } from '$lib/constants';
 	import { game, isLost, isWin, proposal } from '$lib/store/game';
 
 	import Popup from './Popup.svelte';
@@ -49,7 +50,9 @@
 			<button on:click={writeClipboard}>{clipboardStatus}</button>
 			<div class="display-solution">
 				{#each $proposal as id}
-					<img src="/keyboard/{id}.png" alt={id} title={id} />
+					<div class="solution-square">
+						<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={id} title={id} />
+					</div>
 				{/each}
 			</div>
 		</div>
@@ -88,7 +91,11 @@
 		background-color: var(--theme-text);
 		border-radius: 25px;
 		margin: 0.5rem;
-		height: 20%;
+		height: fit-content;
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.try-square {
@@ -106,5 +113,11 @@
 		flex-direction: column;
 		justify-content: space-around;
 		color: var(--theme-background);
+	}
+
+	img {
+		height: auto;
+		width: 100%;
+		image-rendering: pixelated;
 	}
 </style>

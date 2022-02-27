@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getCellStatus, tries } from '$lib/store/game';
+	import { POKEMON_SPRITE_REL_URL } from '$lib/constants';
 
 	export let id: number = 0;
 	export let name: string = '';
@@ -12,13 +13,11 @@
 		enter: '✔️',
 		clear: '➰'
 	};
-
-	$: image = `/keyboard/${id}.png`;
 </script>
 
 <div class="pokelmon-key state-{status}" class:action={use === 'action'} title={name} on:click>
 	{#if use === 'key'}
-		<img src={image} alt={name} title={`${id}`} />
+		<img src="{POKEMON_SPRITE_REL_URL}{id}.png" alt={name} title={`${id}`} />
 	{:else}
 		<span class="action-icon" title={name}>{nameToIcon[name]}</span>
 	{/if}

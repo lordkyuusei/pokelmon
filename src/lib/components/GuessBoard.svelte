@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser, dev } from '$app/env';
 
-	import { POKEMON_ICON_URL } from '$lib/constants';
+	import { POKEMON_ICON_REL_URL } from '$lib/constants';
 	import { game, proposal } from '$lib/store/game';
 	import ResultView from './ResultView.svelte';
 </script>
@@ -12,7 +12,11 @@
 			{#each row as cell}
 				<div class="row-cell cell-{cell.status}">
 					{#if cell.id !== 0}
-						<img src="{POKEMON_ICON_URL}{cell.id}.png" alt={`${cell.id}`} title={`${cell.id}`} />
+						<img
+							src="{POKEMON_ICON_REL_URL}{cell.id}.png"
+							alt={`${cell.id}`}
+							title={`${cell.id}`}
+						/>
 					{/if}
 				</div>
 			{/each}
@@ -25,7 +29,7 @@
 {#if dev}
 	<div class="pokelmon-guessboard-debug">
 		{#each $proposal as id}
-			<img src="{POKEMON_ICON_URL}{id}.png" alt={`${id}`} />
+			<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={`${id}`} />
 		{/each}
 	</div>
 {/if}
