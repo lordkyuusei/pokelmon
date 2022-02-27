@@ -1,40 +1,17 @@
-# create-svelte
+# POKELMON
+A [wordle](https://www.powerlanguage.co.uk/wordle/) clone with less words and more monsters.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## HOW TO PLAY
+You can go [there](https://pokelmon.herokuapp.com) or [there](http://pokelmon.kyuu.site) and go click the buttons.
 
-## Creating a project
+There are eighteen Pokémon, one for each known type, and each one has exactly one type. You have to guess the team of the day, once per day.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Since Pokemon are not words, you're maybe wondering how to play without randomly guessing each rounds. The answer is: custom rules!
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+1. There can be duplicates, but not two side-by-side. (e.g. `[Fire, Water, Fire]` is allowed, but `[Fire, Fire, Water]` is not.)
+2. A Pokémon will never ever be surrounded by its weaknesses. (e.g. a Pokémon with a Fire type will never be surrounded by a Water & a Rock type). Go study your table!
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+## CONCLUSION
+I'm not sure if this is the best way to play, but it's a good one.
+You can submit issues & PR if you feel like it.
 
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
