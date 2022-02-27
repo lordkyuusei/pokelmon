@@ -7,7 +7,7 @@
 	import Popup from '$lib/components/Popup.svelte';
 
 	let showSettings = false;
-	let showHelp = false;
+	let showHelp = true;
 
 	const updateLocale = () => localStorage.setItem('locale', $locale);
 	const exampleTeam = [123, 432, 376, 3, 715, 325];
