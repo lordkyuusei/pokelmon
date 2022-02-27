@@ -10,7 +10,7 @@ export const tries = createTries();
 export const proposal = createProposal();
 
 export const isLost = derived(tries, $tries => !get(isWin) && $tries > MAX_TRIALS);
-export const isWin = derived(game, $game => $game[get(tries) - 1].every(cell => cell.status === 'correct'));
+export const isWin = derived(game, $game => $game.find(row => row.every(cell => cell.status === 'correct')) !== undefined);
 
 type CellStatus = {
     status: KeyState,
