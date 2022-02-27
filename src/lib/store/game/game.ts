@@ -37,21 +37,24 @@ export const createGame = () => {
         const correctRow: PokemonRow = game[row].map((cell, index) => ({ id: cell.id, status: cell.id === challenge[index] ? 'correct' : cell.status }));
         const wrongRow: PokemonRow = correctRow.map((cell) => ({ id: cell.id, status: !challenge.includes(cell.id) ? 'wrong' : cell.status }));
 
-        const misplacedRow: PokemonRow = wrongRow.map((cell, _, cells) => {
+        const misplacedRow: PokemonRow = wrongRow.map((cell, index, cells) => {
             if (['blank', 'wrong'].includes(cell.status)) {
-                const siblings = cells.filter(c => c.id === cell.id);
+                const cellsInChallenge = challenge.filter(c => c === cell.id);
+                const cellsInGuess = cells.map((c, i) => ({ ...c, i })).filter(c => c.id === cell.id);
 
-                const challengeSiblings = challenge.filter(c => c === cell.id);
+                const thisCellPosition = cellsInGuess.findIndex(c => c.i === index);
 
-                const correctS = siblings.filter(c => c.id === cell.id && c.status === 'correct').length;
+                const correctS = cellsInGuess.filter(c => c.id === cell.id && c.status === 'correct').length;
+                const misplaced = cellsInChallenge.length - correctS;
+                const wrong = cellsInGuess.length - misplaced - correctS;
 
-                const misplaced = challengeSiblings.length - correctS;
-
-                const wrong = siblings.length - misplaced - correctS;
+                const isWrong = (wrong > 0 && misplaced > 0 && thisCellPosition > 0) || (wrong > 0 && misplaced === 0);
+                const isMisplaced = (misplaced > 0);
+                const isBlank = !isWrong && !isMisplaced;
 
                 return {
                     id: cell.id,
-                    status: wrong > 0 ? 'wrong' : misplaced > 0 ? 'misplaced' : 'correct'
+                    status: isWrong ? 'wrong' : isMisplaced ? 'misplaced' : 'correct'
                 };
             }
             return cell;
