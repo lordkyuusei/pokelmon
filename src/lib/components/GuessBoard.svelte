@@ -38,8 +38,8 @@
 		{#each $proposal as id}
 			<img src="{POKEMON_ICON_REL_URL}{id}.png" alt={`${id}`} />
 		{/each}
-		<button on:click={solve}>Solve</button>
 	</div>
+	<button on:click={solve}>Solve</button>
 {/if}
 
 <style>
@@ -61,7 +61,12 @@
 		grid-template-columns: repeat(6, 1fr);
 		gap: 0.2rem;
 		margin: 1rem auto;
-		background-color: blueviolet;
+		background-color: var(--theme-text);
+		border-radius: 25px;
+	}
+
+	.pokelmon-guessboard-debug > img {
+		margin-top: -10px;
 	}
 
 	img {
