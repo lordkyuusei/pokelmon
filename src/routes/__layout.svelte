@@ -76,8 +76,18 @@
 						{$t('settings-rules-wrong')}
 					</li>
 				</ul>
-				<span>{$t('settings-rules-clue1')}</span>
-				<span>{$t('settings-rules-clue2')}</span>
+				<p>{$t('settings-rules-clue1')}</p>
+				<p>{$t('settings-rules-clue2')}</p>
+				<h3>{$t('settings-items')}</h3>
+				<p>{$t('settings-items-desc')}</p>
+				<ul>
+					<li>
+						{$t('settings-items-1')}
+					</li>
+					<li>
+						{$t('settings-items-2')}
+					</li>
+				</ul>
 			{/if}
 		</div>
 	</Popup>

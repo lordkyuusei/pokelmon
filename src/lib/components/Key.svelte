@@ -1,21 +1,35 @@
 <script lang="ts">
-	import { getCellStatus, tries } from '$lib/store/game';
+	import type { UseType } from '$lib/types/Types';
 	import { POKEMON_SPRITE_REL_URL } from '$lib/constants';
+	import { getCellStatus, tries, item, hasItem } from '$lib/store/game';
 
 	export let id: number = 0;
 	export let name: string = '';
-	export let use: 'key' | 'action' = 'key';
+	export let use: UseType = 'key';
 
 	$: status = getCellStatus(id, $tries);
 
-	const nameToIcon = {
-		backspace: '🔙',
+	const iconToUse = {
+		blank: '🔘',
+		potion: '💊',
+		pokeball: '🔴'
+	};
+
+	$: nameToIcon = {
 		enter: '✔️',
-		clear: '➰'
+		backspace: '🔙',
+		item: iconToUse[$item.name]
 	};
 </script>
 
-<div class="pokelmon-key state-{status}" class:action={use === 'action'} title={name} on:click>
+<div
+	on:click
+	title={name}
+	class="pokelmon-key state-{status}"
+	class:action={use === 'action'}
+	class:isItem={use === 'action' && name === 'item'}
+	class:hasItem={use === 'action' && name === 'item' && $hasItem}
+>
 	{#if use === 'key'}
 		<img src="{POKEMON_SPRITE_REL_URL}{id}.png" alt={name} title={`${id}`} />
 	{:else}
@@ -37,14 +51,20 @@
 		font-size: 2.5rem;
 	}
 
-	.pokelmon-key:hover {
+	.pokelmon-key:hover:not(.isItem),
+	.pokelmon-key:hover.isItem.hasItem {
 		background-color: var(--theme-cardglass);
 		cursor: pointer;
+	}
+
+	.isItem:not(.hasItem) {
+		opacity: 0.5;
 	}
 
 	.state-blank {
 		background-color: var(--theme-text);
 	}
+
 	.state-misplaced {
 		background-color: rgb(255, 174, 0);
 	}

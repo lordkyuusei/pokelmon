@@ -17,7 +17,7 @@
 
 	import { t } from '$lib/store/i18n';
 	import { MAX_TRIALS } from '$lib/constants';
-	import { game, tries, proposal, isWin, isLost } from '$lib/store/game';
+	import { game, tries, proposal, isWin, isLost, item } from '$lib/store/game';
 
 	const handlePokemon = (event) => {
 		const { pokemon } = event.detail;
@@ -29,10 +29,30 @@
 		}
 	};
 
+	// $tries - 2 because -1 (it's an index) and -1 (it's already next turn)
+	const handleItem = () => {
+		const items = {
+			potion: () => {
+				game.removeLastTry($tries - 2);
+				tries.decrement();
+				item.reset();
+			},
+			pokeball: () => {
+				game.showClue($tries - 1, $proposal);
+				item.reset();
+				//
+			},
+			blank: () => {}
+		};
+		const action = items[$item.name];
+		action();
+	};
+
 	const handleValidate = () => {
 		if (!$isWin && !$isLost) {
 			if ($game[$tries - 1].findIndex((p) => p.id === 0) === -1) {
 				game.verify($tries - 1, $proposal);
+				item.rollItem();
 				tries.increment();
 			}
 		}
@@ -44,7 +64,8 @@
 		if (!$isWin && !$isLost) {
 			const events = {
 				backspace: () => handleBackspace(),
-				enter: () => handleValidate()
+				enter: () => handleValidate(),
+				item: () => handleItem()
 			};
 			const action = events[event.detail.action];
 			action();

@@ -1,6 +1,7 @@
-import { get, writable } from "svelte/store";
-import type { PokemonGame, PokemonRow, KeyState } from "$lib/types/Types";
+import { writable } from "svelte/store";
+
 import { MAX_TRIALS } from "$lib/constants";
+import type { PokemonGame, PokemonRow } from "$lib/types/Types";
 
 export const createGame = () => {
     const empty: PokemonGame = [...Array(MAX_TRIALS)]
@@ -32,6 +33,23 @@ export const createGame = () => {
         return game;
     });
 
+    const removeLastTry = (row: number) => update(game => {
+        const gameRow = game[row];
+        const blankRow: PokemonRow = gameRow.map(_ => ({ id: 0, status: "blank" }));
+        game[row] = blankRow;
+        return game;
+    });
+
+    const showClue = (row: number, proposal: number[]) => update(game => {
+        const firstBlank = game[row].findIndex(c => c.id === 0);
+        if (-1 < firstBlank && firstBlank < game[row].length - 1) {
+            const clue = proposal[firstBlank];
+            game[row][firstBlank] = { id: clue, status: "clue" };
+        }
+        return game;
+
+    });
+
     /* 3 steps verification: all correct, then all wrong, then calculs based on the remaining. */
     const verify = (row: number, challenge: number[]) => update(game => {
         const correctRow: PokemonRow = game[row].map((cell, index) => ({ id: cell.id, status: cell.id === challenge[index] ? 'correct' : cell.status }));
@@ -50,7 +68,6 @@ export const createGame = () => {
 
                 const isWrong = (wrong > 0 && misplaced > 0 && thisCellPosition > 0) || (wrong > 0 && misplaced === 0);
                 const isMisplaced = (misplaced > 0);
-                const isBlank = !isWrong && !isMisplaced;
 
                 return {
                     id: cell.id,
@@ -70,7 +87,9 @@ export const createGame = () => {
         subscribe,
         write,
         backspace,
+        removeLastTry,
         verify,
         reset,
+        showClue
     }
 }

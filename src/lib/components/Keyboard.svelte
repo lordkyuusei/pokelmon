@@ -13,8 +13,8 @@
 
 	const dispatch = createEventDispatcher();
 
-	const handlePokemon = (event) => dispatch('pokemon', { pokemon: event.target.title });
 	const handleSpecial = (event) => dispatch('action', { action: event.target.title });
+	const handlePokemon = (event) => dispatch('pokemon', { pokemon: event.target.title });
 </script>
 
 <div class="pokelmon-keyboard" class:disable={$isWin || $isLost}>
@@ -30,6 +30,7 @@
 		<Key name="backspace" use="action" on:click={handleSpecial} />
 	</div>
 	<div class="keyboard-row third">
+		<Key name="item" use="action" on:click={handleSpecial} />
 		{#each thirdRow as key}
 			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
 		{/each}
