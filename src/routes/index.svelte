@@ -22,7 +22,11 @@
 	const handlePokemon = (event) => {
 		const { pokemon } = event.detail;
 		const id = parseInt(pokemon);
-		game.write(id, $tries - 1);
+		if (!isNaN(id)) {
+			game.write(id, $tries - 1);
+		} else {
+			console.error('2fast4me', id);
+		}
 	};
 
 	const handleValidate = () => {
