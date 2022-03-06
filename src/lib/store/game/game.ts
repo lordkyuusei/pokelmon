@@ -22,14 +22,20 @@ export const createGame = () => {
         if (cell !== -1) {
             game[row][cell] = { id, status: 'blank' };
         }
+        if (cell + 1 < game[row].length) {
+            game[row][cell + 1] = { id: 0, status: 'guess' };
+        }
         return game;
     });
 
     // Removes the last selected Pokémon from the game board
     const backspace = (row: number) => update(game => {
         const cell = game[row].findIndex(c => c.id === 0);
-        const position = (cell > 0 ? cell : game[row].length) - 1;
-        game[row][position] = { id: 0, status: 'blank' };
+        const position = (cell >= 0 ? cell : game[row].length) - 1;
+        game[row][position] = { id: 0, status: 'guess' };
+        if (position + 1 < game[row].length) {
+            game[row][position + 1] = { id: 0, status: 'blank' };
+        }
         return game;
     });
 
@@ -42,12 +48,11 @@ export const createGame = () => {
 
     const showClue = (row: number, proposal: number[]) => update(game => {
         const firstBlank = game[row].findIndex(c => c.id === 0);
-        if (-1 < firstBlank && firstBlank < game[row].length - 1) {
+        if (-1 < firstBlank && firstBlank <= game[row].length - 1) {
             const clue = proposal[firstBlank];
             game[row][firstBlank] = { id: clue, status: "clue" };
         }
         return game;
-
     });
 
     /* 3 steps verification: all correct, then all wrong, then calculs based on the remaining. */
@@ -78,6 +83,9 @@ export const createGame = () => {
         });
 
         game[row] = misplacedRow;
+        if (row + 1 < game.length) {
+            game[row + 1][0] = { id: 0, status: 'guess' };
+        }
         return game;
     });
 

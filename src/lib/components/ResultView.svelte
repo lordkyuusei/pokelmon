@@ -1,24 +1,20 @@
 <script lang="ts">
 	import { browser } from '$app/env';
 	import { t } from '$lib/store/i18n';
-	import { POKEMON_ICON_REL_URL } from '$lib/constants';
-	import { game, isLost, isWin, proposal } from '$lib/store/game';
+	import { ITEM_ICON_MAP, POKEMON_ICON_REL_URL } from '$lib/constants';
+	import { game, isLost, isWin, proposal, item } from '$lib/store/game';
+	import { GUESS_ICON_MAP } from '$lib/constants';
 
 	import Popup from './Popup.svelte';
 
-	const mapGuessToIcon = {
-		blank: '🔳',
-		wrong: '🟥',
-		correct: '🟩',
-		misplaced: '🟧'
-	};
-
 	let showResult: boolean = false;
+	let stats: any = [];
 	let clipboardStatus = $t('game-copy');
 
 	$: {
 		if ($isWin || $isLost) {
 			showResult = true;
+			stats = item.showStats().slice(0, -1);
 		}
 	}
 
@@ -30,10 +26,11 @@
 			const nbrTries = $game.filter((row) => row.every((cell) => cell.status !== 'blank')).length;
 			const header = `${$t('game-clipboard-header')} - ${nbrTries}/${totalTries}`;
 			const tries = $game
-				.map((row) => row.map((guess) => mapGuessToIcon[guess.status]).join(''))
+				.map((row) => row.map((guess) => GUESS_ICON_MAP[guess.status]).join(''))
 				.join('\n');
+			const items = stats.map((item) => `${ITEM_ICON_MAP[item.name]}✖️${item.uses}`).join('');
 			await navigator.clipboard
-				.writeText(header + '\n' + tries)
+				.writeText(`${header}\n${tries}\n${items}`)
 				.then(() => (clipboardStatus = $t('game-copy-success')))
 				.catch(() => (clipboardStatus = $t('game-copy-failure')));
 		}
@@ -47,9 +44,12 @@
 			{#each $game as row}
 				<div class="try-square">
 					{#each row as guess}
-						<span>{mapGuessToIcon[guess.status]}</span>
+						<span>{GUESS_ICON_MAP[guess.status]}</span>
 					{/each}
 				</div>
+			{/each}
+			{#each stats as stat}
+				{ITEM_ICON_MAP[stat.name]}: {stat.uses}&nbsp;
 			{/each}
 		</div>
 		<button on:click={writeClipboard}>{clipboardStatus}</button>
@@ -91,6 +91,7 @@
 		background-color: var(--theme-text);
 		border-radius: 25px;
 		padding: 0.5rem;
+		text-align: center;
 	}
 
 	.display-solution {
