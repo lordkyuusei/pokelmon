@@ -4,20 +4,33 @@
 	import Key from './Key.svelte';
 	import pokemon from '$lib/store/alphabet.json';
 	import type { PokemonKey } from '$lib/types/Types';
+	import { handleKeyboardEvent } from '$lib/store/keyboardEvent';
 
+	const dispatch = createEventDispatcher();
 	const pokemonKeys: PokemonKey[] = pokemon;
 
 	const firstRow: PokemonKey[] = pokemonKeys.slice(0, pokemonKeys.length / 2 - 1);
 	const secondRow: PokemonKey[] = pokemonKeys.slice(pokemonKeys.length / 2 - 1, pokemon.length - 4);
 	const thirdRow: PokemonKey[] = pokemonKeys.slice(pokemon.length - 4, pokemon.length);
 
-	const dispatch = createEventDispatcher();
+	const handleKeyboard = ({ key }: { key: string }) => {
+		const keys = {
+			Backspace: () => dispatch('action', { action: 'backspace' }),
+			Enter: () => dispatch('action', { action: 'enter' })
+		};
+		keys[key]?.call(this);
+	};
 
 	const handleSpecial = (event) => dispatch('action', { action: event.target.title });
 	const handlePokemon = (event) => dispatch('pokemon', { pokemon: event.target.title });
 </script>
 
-<div class="pokelmon-keyboard" class:disable={$isWin || $isLost}>
+<div
+	class="pokelmon-keyboard"
+	class:disable={$isWin || $isLost}
+	use:handleKeyboardEvent
+	on:keyboardPress={handleKeyboard}
+>
 	<div class="keyboard-row first">
 		{#each firstRow as key}
 			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
