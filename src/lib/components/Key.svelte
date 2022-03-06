@@ -2,6 +2,7 @@
 	import type { UseType } from '$lib/types/Types';
 	import { POKEMON_SPRITE_REL_URL } from '$lib/constants';
 	import { getCellStatus, tries, item, hasItem } from '$lib/store/game';
+	import { ITEM_ICON_MAP } from '$lib/constants';
 
 	export let id: number = 0;
 	export let name: string = '';
@@ -9,16 +10,10 @@
 
 	$: status = getCellStatus(id, $tries);
 
-	const iconToUse = {
-		blank: '🔘',
-		potion: '💊',
-		pokeball: '🔴'
-	};
-
 	$: nameToIcon = {
 		enter: '✔️',
 		backspace: '🔙',
-		item: iconToUse[$item.name]
+		item: ITEM_ICON_MAP[$item.name]
 	};
 </script>
 

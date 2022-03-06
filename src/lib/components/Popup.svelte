@@ -21,18 +21,11 @@
 		right: 0;
 		padding: 0.5rem;
 		position: absolute;
-		text-align: center;
 		font-family: 'Cascadia Code', monospace;
 		font-size: 0.8rem;
-		justify-content: center;
-		justify-items: center;
 		margin: 0 auto;
 		z-index: 10;
-		display: flex;
 		border-radius: 25px;
-		align-items: center;
-		align-content: space-around;
-		flex-direction: column;
 		color: var(--theme-text);
 		box-shadow: var(--theme-shadow);
 		background-color: var(--theme-background);
@@ -78,10 +71,6 @@
 	}
 
 	@media screen and (max-width: 768px) {
-		.show {
-			top: 10vh;
-		}
-
 		.size-lg,
 		.size-md {
 			width: 90vw;

@@ -19,13 +19,17 @@ export type CellStatus = {
 
 export type UseType = 'key' | 'action' | 'item';
 export type ItemType = 'blank' | 'potion' | 'pokeball';
-export type KeyState = 'blank' | 'misplaced' | 'correct' | 'wrong' | 'clue';
+export type KeyState = 'blank' | 'misplaced' | 'correct' | 'wrong' | 'clue' | 'guess';
 
 export type Item = {
     id: number;
     name: ItemType;
+    uses: number;
     roll: number;
 }
+
+export type GuessMap = Record<KeyState, string>
+export type ItemMap = Record<ItemType, string>
 
 type ElementRef = {
     [key: string]: string;

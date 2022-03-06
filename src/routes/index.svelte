@@ -22,10 +22,8 @@
 	const handlePokemon = (event) => {
 		const { pokemon } = event.detail;
 		const id = parseInt(pokemon);
-		if (!isNaN(id)) {
+		if (!isNaN(id) && $game[$tries - 1].some((item) => item.id === 0)) {
 			game.write(id, $tries - 1);
-		} else {
-			console.error('2fast4me', id);
 		}
 	};
 
@@ -35,17 +33,15 @@
 			potion: () => {
 				game.removeLastTry($tries - 2);
 				tries.decrement();
-				item.reset();
+				item.wasUsed('potion');
 			},
 			pokeball: () => {
 				game.showClue($tries - 1, $proposal);
-				item.reset();
-				//
+				item.wasUsed('pokeball');
 			},
 			blank: () => {}
 		};
-		const action = items[$item.name];
-		action();
+		items[$item.name]?.call(this);
 	};
 
 	const handleValidate = () => {
@@ -67,8 +63,7 @@
 				enter: () => handleValidate(),
 				item: () => handleItem()
 			};
-			const action = events[event.detail.action];
-			action();
+			events[event.detail.action]?.call(this);
 		}
 	};
 
@@ -99,7 +94,7 @@
 
 		if (daily_challenge.empty) {
 			const challenge = proposal.init();
-			const save = await setDoc(doc(getFirestore(fireApp), 'challenges', dailyId), {
+			await setDoc(doc(getFirestore(fireApp), 'challenges', dailyId), {
 				id: dailyId,
 				challenge
 			});

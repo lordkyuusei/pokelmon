@@ -34,7 +34,7 @@
 			showHelp = false;
 			showSettings = false;
 		}}
-		size={showHelp ? 'lg' : showSettings ? 'md' : 'sm'}
+		size={showHelp ? 'lg' : 'md'}
 	>
 		<div class="show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
 			{#if showSettings}
@@ -128,7 +128,7 @@
 		align-items: center;
 		align-content: center;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: center;
 	}
 
 	.languages,

@@ -4,8 +4,10 @@
 
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
+
 	const { setTheme } = getContext('theme');
 	let isChecked: boolean;
+
 	onMount(() => {
 		isChecked = localStorage.getItem('currentTheme') !== 'moon';
 	});
@@ -13,13 +15,13 @@
 
 <label class="pokedex-theme">
 	<input
-		title="Toggle dark / light mode"
-		placeholder="Toggle dark / light mode"
+		name="theme"
 		type="checkbox"
 		class="theme-switch"
-		bind:checked={isChecked}
-		name="theme"
+		title="Toggle dark / light mode"
+		placeholder="Toggle dark / light mode"
 		on:click={setTheme}
+		bind:checked={isChecked}
 	/>
 	<span class="theme-icon" class:checked={isChecked} class:unchecked={!isChecked} />
 </label>
@@ -47,13 +49,14 @@
 		cursor: pointer;
 	}
 	.unchecked {
-		transform: translateX(-30px);
+		transform: translateX(-10px);
 		height: 32px;
 		width: 36px;
 		background: url('/moon.png') no-repeat center center;
 		background-size: cover;
 	}
 	.checked {
+		transform: translateX(30px);
 		height: 35px;
 		width: 35px;
 		background: url('/sun.png') no-repeat center center;

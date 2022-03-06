@@ -92,6 +92,7 @@
 	}
 
 	.row-cell {
+		box-sizing: border-box;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -99,31 +100,30 @@
 		width: 4rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
-		transition: background-color 0.5s ease;
 	}
 
 	.cell-0 {
-		transition-delay: 0ms;
+		transition: background-color 0.5s ease 0ms;
 	}
 
 	.cell-1 {
-		transition-delay: 250ms;
+		transition: background-color 0.5s ease 250ms;
 	}
 
 	.cell-2 {
-		transition-delay: 500ms;
+		transition: background-color 0.5s ease 500ms;
 	}
 
 	.cell-3 {
-		transition-delay: 750ms;
+		transition: background-color 0.5s ease 750ms;
 	}
 
 	.cell-4 {
-		transition-delay: 1000ms;
+		transition: background-color 0.5s ease 1000ms;
 	}
 
 	.cell-5 {
-		transition-delay: 1250ms;
+		transition: background-color 0.5s ease 1250ms;
 	}
 
 	.message {
@@ -152,7 +152,8 @@
 	}
 
 	.cell-guess {
-		background-color: var(--theme-primary);
+		background-color: var(--theme-text);
+		border: 3px solid var(--theme-secondary);
 	}
 
 	@media screen and (max-width: 600px) {
