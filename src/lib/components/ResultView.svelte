@@ -23,7 +23,9 @@
 		if (browser) {
 			clipboardStatus = $t('game-copy-ongoing');
 			const totalTries = $game.length;
-			const nbrTries = $game.filter((row) => row.every((cell) => cell.status !== 'blank')).length;
+			const nbrTries = $game.filter((row) =>
+				row.every((cell) => !['blank', 'guess'].includes(cell.status))
+			).length;
 			const header = `${$t('game-clipboard-header')} - ${nbrTries}/${totalTries}`;
 			const tries = $game
 				.map((row) => row.map((guess) => GUESS_ICON_MAP[guess.status]).join(''))

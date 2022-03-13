@@ -1,4 +1,27 @@
-[
+import type { Type } from "$lib/types/Types";
+
+export enum TYPES {
+    ACIER = 1,
+    COMBAT = 2,
+    DRAGON = 3,
+    EAU = 4,
+    ÉLECTRIK = 5,
+    FEU = 6,
+    FÉE = 7,
+    GLACE = 8,
+    INSECTE = 9,
+    NORMAL = 10,
+    PLANTE = 11,
+    POISON = 12,
+    PSY = 13,
+    ROCHE = 14,
+    SOL = 15,
+    SPECTRE = 16,
+    TÉNĖBRES = 17,
+    VOL = 18,
+}
+
+export const types: Type[] = [
     {
         "id": 1,
         "type": {
@@ -6,14 +29,14 @@
             "en": "Steel"
         },
         "weaknesses": [
-            2,
-            6,
-            15
+            TYPES.COMBAT,
+            TYPES.FEU,
+            TYPES.SOL,
         ],
         "strengths": [
-            7,
-            8,
-            14
+            TYPES.FÉE,
+            TYPES.GLACE,
+            TYPES.ROCHE,
         ]
     },
     {
@@ -23,16 +46,16 @@
             "en": "Fighting"
         },
         "weaknesses": [
-            7,
-            13,
-            18
+            TYPES.FÉE,
+            TYPES.PSY,
+            TYPES.VOL,
         ],
         "strengths": [
-            1,
-            8,
-            10,
-            14,
-            17
+            TYPES.ACIER,
+            TYPES.GLACE,
+            TYPES.NORMAL,
+            TYPES.ROCHE,
+            TYPES.TÉNĖBRES
         ]
     },
     {
@@ -42,12 +65,12 @@
             "en": "Dragon"
         },
         "weaknesses": [
-            3,
-            7,
-            8
+            TYPES.DRAGON,
+            TYPES.FÉE,
+            TYPES.GLACE
         ],
         "strengths": [
-            3
+            TYPES.DRAGON
         ]
     },
     {
@@ -57,13 +80,13 @@
             "en": "Water"
         },
         "weaknesses": [
-            5,
-            11
+            TYPES.ÉLECTRIK,
+            TYPES.PLANTE
         ],
         "strengths": [
-            6,
-            14,
-            15
+            TYPES.FEU,
+            TYPES.ROCHE,
+            TYPES.SOL
         ]
     },
     {
@@ -73,11 +96,11 @@
             "en": "Electrik"
         },
         "weaknesses": [
-            15
+            TYPES.SOL
         ],
         "strengths": [
-            4,
-            18
+            TYPES.EAU,
+            TYPES.VOL,
         ]
     },
     {
@@ -87,15 +110,15 @@
             "en": "Fire"
         },
         "weaknesses": [
-            4,
-            14,
-            15
+            TYPES.EAU,
+            TYPES.ROCHE,
+            TYPES.SOL
         ],
         "strengths": [
-            1,
-            8,
-            9,
-            11
+            TYPES.ACIER,
+            TYPES.GLACE,
+            TYPES.INSECTE,
+            TYPES.PLANTE
         ]
     },
     {
@@ -105,12 +128,12 @@
             "en": "Fairy"
         },
         "weaknesses": [
-            1,
-            12
+            TYPES.ACIER,
+            TYPES.POISON
         ],
         "strengths": [
-            3,
-            17
+            TYPES.DRAGON,
+            TYPES.TÉNĖBRES
         ]
     },
     {
@@ -120,16 +143,16 @@
             "en": "Ice"
         },
         "weaknesses": [
-            1,
-            2,
-            6,
-            14
+            TYPES.ACIER,
+            TYPES.COMBAT,
+            TYPES.FEU,
+            TYPES.ROCHE,
         ],
         "strengths": [
-            3,
-            11,
-            15,
-            18
+            TYPES.DRAGON,
+            TYPES.PLANTE,
+            TYPES.SOL,
+            TYPES.VOL,
         ]
     },
     {
@@ -139,13 +162,14 @@
             "en": "Bug"
         },
         "weaknesses": [
-            6,
-            14
+            TYPES.FEU,
+            TYPES.ROCHE,
+            TYPES.VOL,
         ],
         "strengths": [
-            11,
-            13,
-            17
+            TYPES.PLANTE,
+            TYPES.PSY,
+            TYPES.TÉNĖBRES
         ]
     },
     {
@@ -155,7 +179,7 @@
             "en": "Normal"
         },
         "weaknesses": [
-            2
+            TYPES.COMBAT
         ],
         "strengths": []
     },
@@ -166,16 +190,16 @@
             "en": "Grass"
         },
         "weaknesses": [
-            4,
-            8,
-            9,
-            12,
-            18
+            TYPES.FEU,
+            TYPES.GLACE,
+            TYPES.INSECTE,
+            TYPES.POISON,
+            TYPES.VOL,
         ],
         "strengths": [
-            7,
-            8,
-            14
+            TYPES.EAU,
+            TYPES.ROCHE,
+            TYPES.SOL,
         ]
     },
     {
@@ -185,12 +209,12 @@
             "en": "Poison"
         },
         "weaknesses": [
-            13,
-            15
+            TYPES.PSY,
+            TYPES.SOL
         ],
         "strengths": [
-            7,
-            11
+            TYPES.FÉE,
+            TYPES.PLANTE,
         ]
     },
     {
@@ -200,13 +224,13 @@
             "en": "Psychic"
         },
         "weaknesses": [
-            9,
-            16,
-            17
+            TYPES.INSECTE,
+            TYPES.SPECTRE,
+            TYPES.TÉNĖBRES,
         ],
         "strengths": [
-            2,
-            12
+            TYPES.COMBAT,
+            TYPES.POISON,
         ]
     },
     {
@@ -216,17 +240,17 @@
             "en": "Rock"
         },
         "weaknesses": [
-            1,
-            2,
-            4,
-            11,
-            15
+            TYPES.ACIER,
+            TYPES.COMBAT,
+            TYPES.EAU,
+            TYPES.PLANTE,
+            TYPES.SOL,
         ],
         "strengths": [
-            6,
-            8,
-            9,
-            18
+            TYPES.FEU,
+            TYPES.INSECTE,
+            TYPES.GLACE,
+            TYPES.VOL,
         ]
     },
     {
@@ -236,16 +260,16 @@
             "en": "Ground"
         },
         "weaknesses": [
-            4,
-            8,
-            11
+            TYPES.EAU,
+            TYPES.GLACE,
+            TYPES.PLANTE,
         ],
         "strengths": [
-            1,
-            5,
-            6,
-            12,
-            14
+            TYPES.ACIER,
+            TYPES.ÉLECTRIK,
+            TYPES.FEU,
+            TYPES.POISON,
+            TYPES.ROCHE
         ]
     },
     {
@@ -255,12 +279,12 @@
             "en": "Ghost"
         },
         "weaknesses": [
-            16,
-            17
+            TYPES.SPECTRE,
+            TYPES.TÉNĖBRES
         ],
         "strengths": [
-            13,
-            16
+            TYPES.PSY,
+            TYPES.SPECTRE
         ]
     },
     {
@@ -270,13 +294,13 @@
             "en": "Dark"
         },
         "weaknesses": [
-            2,
-            7,
-            9
+            TYPES.COMBAT,
+            TYPES.FÉE,
+            TYPES.INSECTE,
         ],
         "strengths": [
-            13,
-            16
+            TYPES.PSY,
+            TYPES.SPECTRE
         ]
     },
     {
@@ -286,14 +310,14 @@
             "en": "Flying"
         },
         "weaknesses": [
-            5,
-            8,
-            14
+            TYPES.ÉLECTRIK,
+            TYPES.GLACE,
+            TYPES.ROCHE
         ],
         "strengths": [
-            2,
-            9,
-            11
+            TYPES.COMBAT,
+            TYPES.PLANTE,
+            TYPES.INSECTE,
         ]
     }
-]
+];

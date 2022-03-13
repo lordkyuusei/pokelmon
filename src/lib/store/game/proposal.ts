@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import pokemon from '$lib/store/alphabet.json';
-import types from '$lib/store/types.json';
+import { types } from '$lib/store/types';
 
 type Pokemon = {
     id: number;

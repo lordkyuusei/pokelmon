@@ -1,13 +1,19 @@
 <script lang="ts">
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { t, locale, locales } from '$lib/store/i18n';
-	import ThemeContext from '$lib/ThemeContext.svelte';
 	import { onMount } from 'svelte';
-	import { POKEMON_ICON_URL } from '$lib/constants';
-	import Popup from '$lib/components/Popup.svelte';
 
-	let showSettings = false;
+	import { POKEMON_ICON_URL } from '$lib/constants';
+	import { t, locale, locales } from '$lib/store/i18n';
+
+	import Popup from '$lib/components/Popup.svelte';
+	import ThemeContext from '$lib/ThemeContext.svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import TypesRelationship from '$lib/components/TypesRelationship.svelte';
+	import Credits from '$lib/components/Credits.svelte';
+
 	let showHelp = true;
+	let showTable = false;
+	let showCredit = false;
+	let showSettings = false;
 
 	const updateLocale = () => localStorage.setItem('locale', $locale);
 	const exampleTeam = [123, 432, 376, 3, 715, 325];
@@ -24,19 +30,25 @@
 <ThemeContext>
 	<header>
 		<button class="icon" on:click={() => (showSettings = true)}>⚙️</button>
+		<button class="icon" on:click={() => (showTable = true)}>📊</button>
 		<h1>Pokélmon</h1>
 		<button class="icon" on:click={() => (showHelp = true)}>❓</button>
+		<button class="icon" on:click={() => (showCredit = true)}>🐛</button>
 	</header>
 
 	<Popup
-		show={showHelp || showSettings}
+		show={showHelp || showSettings || showTable || showCredit}
 		close={() => {
 			showHelp = false;
 			showSettings = false;
+			showTable = false;
+			showCredit = false;
 		}}
 		size={showHelp ? 'lg' : 'md'}
 	>
-		<div class="show-{showHelp ? 'help' : showSettings ? 'settings' : ''}">
+		<div
+			class="show-{showHelp ? 'help' : showSettings ? 'settings' : showTable ? 'table' : 'credit'}"
+		>
 			{#if showSettings}
 				<h3>{$t('settings-lang')}</h3>
 				<div class="languages">
@@ -88,6 +100,10 @@
 						{$t('settings-items-2')}
 					</li>
 				</ul>
+			{:else if showTable}
+				<TypesRelationship />
+			{:else if showCredit}
+				<Credits />
 			{/if}
 		</div>
 	</Popup>
@@ -102,18 +118,17 @@
 		background-color: var(--theme-alt-background);
 	}
 
+	h1,
+	h3 {
+		text-align: center;
+		font-family: 'Cascadia Code', monospace;
+	}
+
 	h1 {
 		font-size: 2.5em;
 		margin: 0.5rem;
 		color: var(--theme-text);
 		background-color: var(--theme-alt-background);
-		text-align: center;
-		font-family: 'Cascadia Code', monospace;
-	}
-
-	h3 {
-		text-align: center;
-		font-family: 'Cascadia Code', monospace;
 	}
 
 	ul {
@@ -121,7 +136,9 @@
 	}
 
 	.show-help,
-	.show-settings {
+	.show-settings,
+	.show-table,
+	.show-credit {
 		width: 100%;
 		height: 100%;
 		display: flex;

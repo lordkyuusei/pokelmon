@@ -1,3 +1,5 @@
+import type { TYPES } from "$lib/store/types";
+
 export type PokemonCell = {
     id: number;
     status: KeyState;
@@ -10,6 +12,18 @@ export type PokemonKey = {
     id: number;
     type: number;
     pokemon: ElementRef;
+}
+
+export type Type = {
+    id: number;
+    type: TypeLang,
+    weaknesses: TYPES[],
+    strengths: TYPES[],
+};
+
+type TypeLang = {
+    fr: string;
+    en: string;
 }
 
 export type CellStatus = {

@@ -19,5 +19,5 @@ export const GUESS_ICON_MAP: GuessMap = {
     correct: '🟩',
     misplaced: '🟧',
     clue: '🟨',
-    guess: '🟦',
+    guess: '🔳',
 }
