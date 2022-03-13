@@ -19,7 +19,7 @@
 	</select>
 	<div class="relationship-detail">
 		<div class="detail-strengths">
-			<p>{$t('pokemon-strengths')}</p>
+			<p>{$t('pokemon-weaknesses')}</p>
 			{#each strengths as strength}
 				<div class="strength">{strength.type[$locale.slice(0, 2)]}</div>
 			{/each}
@@ -30,7 +30,7 @@
 		</div>
 		⏩
 		<div class="detail-weaknesses">
-			<p>{$t('pokemon-weaknesses')}</p>
+			<p>{$t('pokemon-strengths')}</p>
 			{#each weaknesses as weakness}
 				<div class="weakness">{weakness.type[$locale.slice(0, 2)]}</div>
 			{/each}
