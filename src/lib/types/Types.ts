@@ -3,6 +3,7 @@ import type { TYPES } from "$lib/store/types";
 export type PokemonCell = {
     id: number;
     status: KeyState;
+    isDupe: boolean;
 }
 
 export type PokemonRow = PokemonCell[];

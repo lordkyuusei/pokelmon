@@ -3,6 +3,7 @@
 
 	import { POKEMON_ICON_REL_URL } from '$lib/constants';
 	import { game, proposal } from '$lib/store/game';
+	import { t } from '$lib/store/i18n';
 	import { createEventDispatcher } from 'svelte';
 	import ResultView from './ResultView.svelte';
 
@@ -28,6 +29,9 @@
 							alt={`${cell.id}`}
 							title={`${cell.id}`}
 						/>
+					{/if}
+					{#if cell.isDupe}
+						<span class="cell-dupe" title={$t('game-dupe')}>➕</span>
 					{/if}
 				</div>
 			{/each}
@@ -92,14 +96,23 @@
 	}
 
 	.row-cell {
-		box-sizing: border-box;
+		position: relative;
 		display: flex;
+		box-sizing: border-box;
 		justify-content: center;
 		align-items: center;
 		height: 3rem;
 		width: 4rem;
 		border: 1px solid var(--theme-border);
 		border-radius: 10px;
+	}
+
+	.cell-dupe {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 0.75rem;
+		color: var(--theme-text);
 	}
 
 	.cell-0 {

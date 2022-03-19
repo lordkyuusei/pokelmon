@@ -3,6 +3,7 @@ import { writable, derived } from "svelte/store";
 const translations = {
     english: {
         "game-goal": "Guess the team of six pokémon of the day in less than {{ MAX_TRIALS }} trials",
+        "game-dupe": "You found a duplicate pokémon! Another one is hiding in today's challenge.",
         "game-won": "You won!",
         "game-lost": "You lost...",
         "game-copy": "Copy result",
@@ -34,6 +35,7 @@ const translations = {
     },
     french: {
         "game-goal": "Devinez l'équipe de six pokémon du jour en moins de {{ MAX_TRIALS }} essais",
+        "game-dupe": "Vous avez trouvé un doublon ! Un autre est caché dans le challenge du jour.",
         "game-won": "Victoire !",
         "game-lost": "Défaite...",
         "game-copy": "Copier le résultat",
