@@ -2,7 +2,7 @@
 A [wordle](https://www.powerlanguage.co.uk/wordle/) clone with less words and more monsters.
 
 ## HOW TO PLAY
-You can go [there](https://pokelmon.herokuapp.com) or [there](http://pokelmon.kyuu.site) and go click the buttons.
+You can go [there](https://pokelmon.herokuapp.com) or [there](http://pokelmon.lkyuusei.fr) and go click the buttons.
 
 There are eighteen Pokémon, one for each known type, and each one has exactly one type. You have to guess the team of the day, once per day.
 
