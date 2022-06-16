@@ -19,6 +19,8 @@
 	import { MAX_TRIALS } from '$lib/constants';
 	import { game, tries, proposal, isWin, isLost, item, hasItem } from '$lib/store/game';
 
+	console.log(initializeApp);
+
 	const handlePokemon = (event) => {
 		const { pokemon } = event.detail;
 		const id = parseInt(pokemon);
