@@ -6,9 +6,6 @@
 		🛠️: <a href="https://github.com/pokelmon">Pokelmon (source)</a>
 	</p>
 	<p>
-		📧: <a href="https://twitter.com/_lkyuu">@_lkyuu</a>
-	</p>
-	<p>
 		🧱: <a href="https://github.com/svelte">SvelteKit</a>
 	</p>
 </div>
