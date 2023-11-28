@@ -75,10 +75,11 @@
 
 <style>
 	main {
-		display: flex;
-		flex-direction: column;
+		display: grid;
 		place-items: center;
 		place-content: center;
+		grid-auto-flow: row;
+		height: 100svh;
 		background-color: var(--theme-alt-background);
 	}
 
