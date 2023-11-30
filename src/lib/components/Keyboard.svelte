@@ -33,19 +33,19 @@
 >
 	<div class="keyboard-row first">
 		{#each firstRow as key}
-			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
+			<Key id={key.id} type={key.type} name={key.pokemon.fr} on:click={handlePokemon} />
 		{/each}
 	</div>
 	<div class="keyboard-row second">
 		{#each secondRow as key}
-			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
+			<Key id={key.id} type={key.type} name={key.pokemon.fr} on:click={handlePokemon} />
 		{/each}
 		<Key name="backspace" use="action" on:click={handleSpecial} />
 	</div>
 	<div class="keyboard-row third">
 		<Key name="item" use="action" on:click={handleSpecial} />
 		{#each thirdRow as key}
-			<Key id={key.id} name={key.pokemon.fr} on:click={handlePokemon} />
+			<Key id={key.id} type={key.type} name={key.pokemon.fr} on:click={handlePokemon} />
 		{/each}
 		<Key name="enter" use="action" on:click={handleSpecial} />
 	</div>
