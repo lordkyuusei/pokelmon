@@ -135,6 +135,14 @@
 		text-align: initial;
 	}
 
+	button {
+		cursor: pointer;
+	}
+
+	button:hover {
+		transform: scale(1.1);
+	}
+
 	.show-help,
 	.show-settings,
 	.show-table,

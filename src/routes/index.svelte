@@ -16,11 +16,10 @@
 		}
 	};
 
-	// $tries - 2 because -1 (it's an index) and -1 (it's already next turn)
 	const handleItem = () => {
 		const items = {
 			potion: () => {
-				game.removeLastTry($tries - 2);
+				game.removeLastTry();
 				tries.decrement();
 				item.wasUsed('potion');
 			},
@@ -59,8 +58,6 @@
 	};
 
 	onMount(async () => {
-		const date = new Date();
-		const dailyId = `chal-${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 		const challenge = proposal.init();
 		proposal.init(challenge);
 	});
@@ -79,7 +76,7 @@
 		place-items: center;
 		place-content: center;
 		grid-auto-flow: row;
-		height: 100svh;
+		height: 100%;
 		background-color: var(--theme-alt-background);
 	}
 
