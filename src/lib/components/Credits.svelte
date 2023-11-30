@@ -3,10 +3,10 @@
 		🧑‍💻: <a href="https://github.com/lordkyuusei">lordkyuusei</a>
 	</p>
 	<p>
-		🛠️: <a href="https://github.com/pokelmon">Pokelmon (source)</a>
+		🛠️: <a href="https://github.com/lordkyuusei/pokelmon">Pokelmon (source)</a>
 	</p>
 	<p>
-		🧱: <a href="https://github.com/svelte">SvelteKit</a>
+		🧱: <a href="https://github.com/svelte">Svelte</a>
 	</p>
 </div>
 
