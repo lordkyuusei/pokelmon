@@ -39,10 +39,8 @@ export const createGame = () => {
         return game;
     });
 
-    const removeLastTry = (row: number) => update(game => {
-        const gameRow = game[row];
-        const blankRow: PokemonRow = gameRow.map(_ => ({ id: 0, status: "blank", isDupe: false }));
-        game[row] = blankRow;
+    const removeLastTry = () => update(game => {
+        game = game.map((_, id) => game[Math.min(id + 1, MAX_TRIALS - 1)]);
         return game;
     });
 
