@@ -30,7 +30,7 @@ const translations = {
         "settings-rules-clue2": "Clue 2: There will never be Pokemon surrounded by super-effective typing against it.",
         "settings-items": "Items",
         "settings-items-desc": "With each guess, you can sometimes get an item. There are currently two items:",
-        "settings-items-1": "💊 Potion - Removes your first guess from the board, granting you a new try.",
+        "settings-items-1": "💊 Potion - Removes your oldest guess from the board, granting you a new try.",
         "settings-items-2": "🔴 Pokeball - Reveals the Pokemon from the solution at your current guess cell.",
     },
     french: {
@@ -62,7 +62,7 @@ const translations = {
         "settings-rules-clue2": "Règle 2: Il n'y aura jamais de Pokémon entouré par des congénères avec un type super efficace contre lui.",
         "settings-items": "Objets",
         "settings-items-desc": "Avec chaque essai, vous pouvez parfois obtenir un objet. Il y a actuellement deux objets:",
-        "settings-items-1": "💊 Potion - Supprime votre dernier essai du plateau.",
+        "settings-items-1": "💊 Potion - Supprime l'essai le plus en haut du plateau, vous octroyant un autre essai.",
         "settings-items-2": "🔴 Pokeball - Révèle le Pokémon à l'emplacement du curseur.",
     }
 }
