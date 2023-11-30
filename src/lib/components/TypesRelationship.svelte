@@ -40,9 +40,9 @@
 
 <style>
 	.types-relationship {
+		display: grid;
+		grid-template: 15% 85% / 100%;
 		box-sizing: border-box;
-		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
 		margin: 0 auto;
@@ -53,24 +53,24 @@
 
 	.types-relationship select {
 		width: 100%;
-		border-radius: 25px;
-		height: 2rem;
+		border-radius: 1.5rem;
+		text-indent: 0.5rem;
+		height: 100%;
 		margin-bottom: 0.5rem;
 	}
 
 	.relationship-detail {
-		display: flex;
-		flex-direction: row;
+		display: grid;
+		grid-auto-flow: column;
 		align-items: center;
 		justify-content: center;
 		height: 100%;
-		gap: 1rem;
+		gap: 1.5rem;
 		font-size: medium;
 	}
 
 	.detail-weaknesses,
 	.detail-strengths {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -79,7 +79,6 @@
 		border: 1px solid var(--theme-text);
 		border-radius: 0.5rem;
 		line-height: 0.5rem;
-		max-height: 90%;
 	}
 
 	.detail-strengths p {
